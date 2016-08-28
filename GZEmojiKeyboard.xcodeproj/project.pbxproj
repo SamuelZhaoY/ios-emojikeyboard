@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F2EB4F41D730F8000DA2C9D /* GZEmojiKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F2EB4F31D730F8000DA2C9D /* GZEmojiKeyboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F2EB5251D7315D700DA2C9D /* GZEmojiKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F2EB5241D7315D700DA2C9D /* GZEmojiKeyboard.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7F2EB4F01D730F8000DA2C9D /* GZEmojiKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GZEmojiKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F2EB4F31D730F8000DA2C9D /* GZEmojiKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEmojiKeyboard.h; sourceTree = "<group>"; };
 		7F2EB4F51D730F8000DA2C9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F2EB5241D7315D700DA2C9D /* GZEmojiKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GZEmojiKeyboard.h; path = Classes/GZEmojiKeyboard.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,7 @@
 		7F2EB4F21D730F8000DA2C9D /* GZEmojiKeyboard */ = {
 			isa = PBXGroup;
 			children = (
-				7F2EB4F31D730F8000DA2C9D /* GZEmojiKeyboard.h */,
+				7F2EB5241D7315D700DA2C9D /* GZEmojiKeyboard.h */,
 				7F2EB4F51D730F8000DA2C9D /* Info.plist */,
 			);
 			path = GZEmojiKeyboard;
@@ -59,7 +59,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F2EB4F41D730F8000DA2C9D /* GZEmojiKeyboard.h in Headers */,
+				7F2EB5251D7315D700DA2C9D /* GZEmojiKeyboard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +278,7 @@
 				7F2EB4FA1D730F8000DA2C9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

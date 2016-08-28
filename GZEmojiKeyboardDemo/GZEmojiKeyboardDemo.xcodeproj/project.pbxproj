@@ -1,0 +1,344 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F2EB5091D7315AC00DA2C9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2EB5081D7315AC00DA2C9D /* main.m */; };
+		7F2EB50C1D7315AC00DA2C9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2EB50B1D7315AC00DA2C9D /* AppDelegate.m */; };
+		7F2EB50F1D7315AC00DA2C9D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2EB50E1D7315AC00DA2C9D /* ViewController.m */; };
+		7F2EB5121D7315AC00DA2C9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F2EB5101D7315AC00DA2C9D /* Main.storyboard */; };
+		7F2EB5141D7315AC00DA2C9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2EB5131D7315AC00DA2C9D /* Assets.xcassets */; };
+		7F2EB5171D7315AC00DA2C9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F2EB5151D7315AC00DA2C9D /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7F2EB5221D7315BF00DA2C9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2EB51E1D7315BF00DA2C9D /* GZEmojiKeyboard.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7F2EB4F01D730F8000DA2C9D;
+			remoteInfo = GZEmojiKeyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7F2EB5041D7315AC00DA2C9D /* GZEmojiKeyboardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GZEmojiKeyboardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F2EB5081D7315AC00DA2C9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7F2EB50A1D7315AC00DA2C9D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7F2EB50B1D7315AC00DA2C9D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7F2EB50D1D7315AC00DA2C9D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7F2EB50E1D7315AC00DA2C9D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7F2EB5111D7315AC00DA2C9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7F2EB5131D7315AC00DA2C9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7F2EB5161D7315AC00DA2C9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7F2EB5181D7315AC00DA2C9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F2EB51E1D7315BF00DA2C9D /* GZEmojiKeyboard.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GZEmojiKeyboard.xcodeproj; path = ../GZEmojiKeyboard.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F2EB5011D7315AC00DA2C9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F2EB4FB1D7315AC00DA2C9D = {
+			isa = PBXGroup;
+			children = (
+				7F2EB51E1D7315BF00DA2C9D /* GZEmojiKeyboard.xcodeproj */,
+				7F2EB5061D7315AC00DA2C9D /* GZEmojiKeyboardDemo */,
+				7F2EB5051D7315AC00DA2C9D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7F2EB5051D7315AC00DA2C9D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F2EB5041D7315AC00DA2C9D /* GZEmojiKeyboardDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F2EB5061D7315AC00DA2C9D /* GZEmojiKeyboardDemo */ = {
+			isa = PBXGroup;
+			children = (
+				7F2EB50A1D7315AC00DA2C9D /* AppDelegate.h */,
+				7F2EB50B1D7315AC00DA2C9D /* AppDelegate.m */,
+				7F2EB50D1D7315AC00DA2C9D /* ViewController.h */,
+				7F2EB50E1D7315AC00DA2C9D /* ViewController.m */,
+				7F2EB5101D7315AC00DA2C9D /* Main.storyboard */,
+				7F2EB5131D7315AC00DA2C9D /* Assets.xcassets */,
+				7F2EB5151D7315AC00DA2C9D /* LaunchScreen.storyboard */,
+				7F2EB5181D7315AC00DA2C9D /* Info.plist */,
+				7F2EB5071D7315AC00DA2C9D /* Supporting Files */,
+			);
+			path = GZEmojiKeyboardDemo;
+			sourceTree = "<group>";
+		};
+		7F2EB5071D7315AC00DA2C9D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F2EB5081D7315AC00DA2C9D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7F2EB51F1D7315BF00DA2C9D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F2EB5231D7315BF00DA2C9D /* GZEmojiKeyboard.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7F2EB5031D7315AC00DA2C9D /* GZEmojiKeyboardDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F2EB51B1D7315AC00DA2C9D /* Build configuration list for PBXNativeTarget "GZEmojiKeyboardDemo" */;
+			buildPhases = (
+				7F2EB5001D7315AC00DA2C9D /* Sources */,
+				7F2EB5011D7315AC00DA2C9D /* Frameworks */,
+				7F2EB5021D7315AC00DA2C9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GZEmojiKeyboardDemo;
+			productName = GZEmojiKeyboardDemo;
+			productReference = 7F2EB5041D7315AC00DA2C9D /* GZEmojiKeyboardDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7F2EB4FC1D7315AC00DA2C9D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = com.gz;
+				TargetAttributes = {
+					7F2EB5031D7315AC00DA2C9D = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = CM2CQ7U9GM;
+					};
+				};
+			};
+			buildConfigurationList = 7F2EB4FF1D7315AC00DA2C9D /* Build configuration list for PBXProject "GZEmojiKeyboardDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7F2EB4FB1D7315AC00DA2C9D;
+			productRefGroup = 7F2EB5051D7315AC00DA2C9D /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7F2EB51F1D7315BF00DA2C9D /* Products */;
+					ProjectRef = 7F2EB51E1D7315BF00DA2C9D /* GZEmojiKeyboard.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				7F2EB5031D7315AC00DA2C9D /* GZEmojiKeyboardDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7F2EB5231D7315BF00DA2C9D /* GZEmojiKeyboard.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GZEmojiKeyboard.framework;
+			remoteRef = 7F2EB5221D7315BF00DA2C9D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F2EB5021D7315AC00DA2C9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F2EB5171D7315AC00DA2C9D /* LaunchScreen.storyboard in Resources */,
+				7F2EB5141D7315AC00DA2C9D /* Assets.xcassets in Resources */,
+				7F2EB5121D7315AC00DA2C9D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F2EB5001D7315AC00DA2C9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F2EB50F1D7315AC00DA2C9D /* ViewController.m in Sources */,
+				7F2EB50C1D7315AC00DA2C9D /* AppDelegate.m in Sources */,
+				7F2EB5091D7315AC00DA2C9D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7F2EB5101D7315AC00DA2C9D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F2EB5111D7315AC00DA2C9D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7F2EB5151D7315AC00DA2C9D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F2EB5161D7315AC00DA2C9D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7F2EB5191D7315AC00DA2C9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7F2EB51A1D7315AC00DA2C9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7F2EB51C1D7315AC00DA2C9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GZEmojiKeyboardDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gz.GZEmojiKeyboardDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7F2EB51D1D7315AC00DA2C9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GZEmojiKeyboardDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gz.GZEmojiKeyboardDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F2EB4FF1D7315AC00DA2C9D /* Build configuration list for PBXProject "GZEmojiKeyboardDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F2EB5191D7315AC00DA2C9D /* Debug */,
+				7F2EB51A1D7315AC00DA2C9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F2EB51B1D7315AC00DA2C9D /* Build configuration list for PBXNativeTarget "GZEmojiKeyboardDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F2EB51C1D7315AC00DA2C9D /* Debug */,
+				7F2EB51D1D7315AC00DA2C9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7F2EB4FC1D7315AC00DA2C9D /* Project object */;
+}
