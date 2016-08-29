@@ -15,5 +15,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.source_files = 'GZEmojiKeyboard/Classes/*'
   s.public_header_files = 'GZEmojiKeyboard/Classes/GZEmojiKeyboard.h'
+  s.dependency 'Masonry'
 
 end
