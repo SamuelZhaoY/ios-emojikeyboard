@@ -14,6 +14,7 @@
 #import "IAPStickerScrollPage.h"
 #import "IAPStickerPackagePanel.h"
 #import "IAPStickerPanelLayoutStrategy.h"
+#import "IAPCommonUtils.h"
 
 NSString* const PAGE_INENTIFIER = @"IAP_STICKER_IDENTIFIER";
 

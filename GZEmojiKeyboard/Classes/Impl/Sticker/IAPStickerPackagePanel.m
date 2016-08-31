@@ -60,7 +60,7 @@
         [self addSubview:stickerTab];
         stickerTab.text = stickerPackage.icon;
         stickerTab.textAlignment = NSTextAlignmentCenter;
-        stickerTab.font = [UIFont iap_T1B];
+        stickerTab.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24.0];
         stickerTab.userInteractionEnabled = YES;
         stickerTab.tag = [self.stickerList indexOfObject:stickerPackage];
         [stickerTab addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onStickerTabTapped:)]];

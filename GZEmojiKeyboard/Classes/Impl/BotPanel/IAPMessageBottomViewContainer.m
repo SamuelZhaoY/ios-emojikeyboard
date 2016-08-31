@@ -91,30 +91,40 @@
             //bring panel to front & animation
             if ([newState intValue] == IAP_STICKER) {
                 self.emoControl.translatesAutoresizingMaskIntoConstraints = YES;
-                self.emoControl.y = IAP_MESSAGE_BOT_MENU_PANEL_HEIGHT;
+                self.emoControl.frame = CGRectMake(self.emoControl.frame.origin.x,
+                                                   IAP_MESSAGE_BOT_MENU_PANEL_HEIGHT,
+                                                   self.emoControl.frame.size.width,
+                                                   self.emoControl.frame.size.height);
                 [self bringSubviewToFront:self.emoControl];
 
                 [UIView animateWithDuration:0.1
                                       delay:0
                                     options: UIViewAnimationOptionCurveLinear
                                  animations:^{
-                                     self.emoControl.y = 0;
-                                 }
+                                     self.emoControl.frame = CGRectMake(self.emoControl.frame.origin.x,
+                                                                        0,
+                                                                        self.emoControl.frame.size.width,
+                                                                        self.emoControl.frame.size.height);                                 }
                                  completion:^(BOOL finished){
                                      self.emoControl.translatesAutoresizingMaskIntoConstraints = NO;
                                      [self.emoControl checkLayout];
                                  }];
             } else {
                 self.botMenu.translatesAutoresizingMaskIntoConstraints = YES;
-                self.botMenu.y = IAP_MESSAGE_BOT_STICKER_PANEL_HEIGHT;
+                self.botMenu.frame = CGRectMake(self.botMenu.frame.origin.x,
+                                                   IAP_MESSAGE_BOT_STICKER_PANEL_HEIGHT,
+                                                   self.botMenu.frame.size.width,
+                                                   self.botMenu.frame.size.height);
                 [self bringSubviewToFront:self.botMenu];
 
                 [UIView animateWithDuration:0.1
                                       delay:0
                                     options: UIViewAnimationOptionCurveLinear
                                  animations:^{
-                                     self.botMenu.y = 0;
-                                 }
+                                     self.botMenu.frame = CGRectMake(self.botMenu.frame.origin.x,
+                                                                     0,
+                                                                     self.botMenu.frame.size.width,
+                                                                     self.botMenu.frame.size.height);                                 }
                                  completion:^(BOOL finished){
                                      self.botMenu.translatesAutoresizingMaskIntoConstraints = NO;
                                      [self bringSubviewToFront:self.botMenu];

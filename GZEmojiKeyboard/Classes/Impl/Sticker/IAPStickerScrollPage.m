@@ -28,7 +28,7 @@
     self = [super init];
     self.item = itemInfo;
     self.text = itemInfo.resource;
-    self.font = [UIFont iap_T1B];
+    self.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24.0];
     self.userInteractionEnabled = YES;
     self.textAlignment = NSTextAlignmentCenter;
     self.clipsToBounds = YES;
@@ -80,7 +80,7 @@ const float IAP_EMOJI_LENS_WIDTH = 60;
     self.stickerType = -1; // set to a unknow value
     
     // Set up basic effect of key pop
-    self.nameLabel.font = [UIFont iap_T7L];
+    self.nameLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
     self.emojiLabel.font = [UIFont systemFontOfSize:35];
     
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
@@ -134,8 +134,8 @@ const float IAP_EMOJI_LENS_WIDTH = 60;
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@(IAP_EMOJI_LENS_WIDTH));
         make.height.equalTo(@(IAP_EMOJI_LENS_HEIGHT));
-        make.leading.equalTo(@(anchorView.origin.x - (IAP_EMOJI_LENS_WIDTH - anchorView.frame.size.width)/2));
-        make.top.equalTo(@(anchorView.origin.y - IAP_EMOJI_LENS_HEIGHT - 5));
+        make.leading.equalTo(@(anchorView.frame.origin.x - (IAP_EMOJI_LENS_WIDTH - anchorView.frame.size.width)/2));
+        make.top.equalTo(@(anchorView.frame.origin.y - IAP_EMOJI_LENS_HEIGHT - 5));
     }];
 }
 

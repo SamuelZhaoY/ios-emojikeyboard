@@ -8,6 +8,8 @@
 
 #import "IAPMessageBottomMenu.h"
 #import "IAPMessageBottomViewContainer.h"
+#import "IAPCommonUtils.h"
+
 
 #define IAP_MESSAGE_BOTTOM_ITEM_SIZE 58.0f
 #define IAP_MESSAGE_BOTTOM_TOP_PADDING 14.0f
@@ -55,7 +57,7 @@
     // Check horizon spacing
     float horizontalSpacing;
     UIWindow* currentWindow = [[UIApplication sharedApplication].delegate window];
-    horizontalSpacing = (currentWindow.width - 4*IAP_MESSAGE_BOTTOM_ITEM_SIZE)/5;
+    horizontalSpacing = (currentWindow.frame.size.width - 4*IAP_MESSAGE_BOTTOM_ITEM_SIZE)/5;
     
     int pageCount = ceilf(((float)self.itemArray.count)/4);
 

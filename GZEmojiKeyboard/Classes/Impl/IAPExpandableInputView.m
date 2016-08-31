@@ -91,8 +91,6 @@
     
     // Checkout is string is empty
     if ([[textView.text stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""].length == 0) {
-        // Show toast here
-        [IAPUIToastView showToastWithText:NSLocalizedString(@"You can't post empty text!", nil) icon:IAPToastIconNone duration:IAPToastDurationNormal completion:nil];
         textView.text = nil;
         return NO;
     }
@@ -114,11 +112,6 @@
         textView.text = nil;
     }
     
-    __weak typeof (self) weakRef = self;
-    [[NSNotificationCenter defaultCenter] postNotificationName:IAP_EXPANDING_INPUT_SEND
-                                                        object:nil
-                                                      userInfo:@{@"messageContent":messageString,
-                                                                 @"view":weakRef?weakRef:[NSNull null]}];
     [self textViewDidChange:textView];
     
     return NO;

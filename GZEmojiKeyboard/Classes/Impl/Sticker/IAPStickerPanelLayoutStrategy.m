@@ -9,6 +9,7 @@
 #import "IAPStickerPanelLayoutStrategy.h"
 #import "IAPMessageBottomViewContainer.h"
 #import "IAPStickerPanelControl.h"
+#import "IAPCommonUtils.h"
 
 @implementation IAPStickerPanelLayoutStrategy
 

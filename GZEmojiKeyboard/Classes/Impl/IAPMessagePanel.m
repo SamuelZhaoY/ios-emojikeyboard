@@ -9,9 +9,9 @@
 #import "IAPMessagePanel.h"
 #import "IAPExpandableInputView.h"
 #import "IAPMessageBottomViewContainer.h"
-#import "IAPMessagingViewController.h"
-#import "IAPMessagingBaseViewController.h"
 #import "IAPStickerPanelControl.h"
+#import "IAPCommonUtils.h"
+
 
 @interface IAPMessagePanel()
 
@@ -40,11 +40,7 @@
     
     self.typingContainer = [UIView new];
     
-    if (self.relatedMessageView.conversation.conversationType == IAPConversationStranger) {
-        self.expandableContainer = [[IAPMessageBottomViewContainer alloc] initWithMenuConfig:IAP_INDIVIDUAL];
-    } else if (self.relatedMessageView.conversation.conversationType == IAPConversationGroup) {
-        self.expandableContainer = [[IAPMessageBottomViewContainer alloc] initWithMenuConfig:IAP_GROUP];
-    }
+    self.expandableContainer = [[IAPMessageBottomViewContainer alloc] initWithMenuConfig:IAP_INDIVIDUAL];
     
     [self addSubview:self.typingContainer];
     [self addSubview:self.expandableContainer];

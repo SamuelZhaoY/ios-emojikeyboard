@@ -14,6 +14,8 @@
 #import "IAPStickerContentScrollView.h"
 #import "IAPStickerPackagePanel.h"
 #import "IAPStickerPanelLayoutStrategy.h"
+#import "IAPCommonUtils.h"
+
 
 const float IAP_EMO_PACK_BAR_HEIGHT = 40;
 const float IAP_EMO_PACK_ITEM_WIDTH = 45;
@@ -86,7 +88,7 @@ const float IAP_EMO_ICON_SIZE = 35;
     
     [self.returnAccessoryBtn setTitle:NSLocalizedString(@"Send", nil) forState:UIControlStateNormal];
     [self.returnAccessoryBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.returnAccessoryBtn.titleLabel setFont:[UIFont iap_T5L]];
+    [self.returnAccessoryBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:14.0]];
     [self.returnAccessoryBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:IAPUIKitUIColor8]] forState:UIControlStateNormal];
     [self.returnAccessoryBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:IAPUIKit_Color_14 alpha:0.8]] forState:UIControlStateHighlighted];
     [self.returnAccessoryBtn addTarget:self action:@selector(sendInput:) forControlEvents:UIControlEventTouchUpInside];
@@ -151,14 +153,19 @@ const float IAP_EMO_ICON_SIZE = 35;
     }
     
     self.returnAccessoryBtn.translatesAutoresizingMaskIntoConstraints = YES;
-    self.returnAccessoryBtn.x = initialValue;
+    self.returnAccessoryBtn.frame = CGRectMake(initialValue,
+                                               self.returnAccessoryBtn.frame.origin.y,
+                                               self.returnAccessoryBtn.frame.size.width,
+                                               self.returnAccessoryBtn.frame.size.height);
     
     [UIView animateWithDuration:0.2
                           delay:0
                         options: UIViewAnimationOptionCurveLinear
                      animations:^{
-                         self.returnAccessoryBtn.x = destinyValue;
-                     }
+                         self.returnAccessoryBtn.frame = CGRectMake(destinyValue,
+                                                                    self.returnAccessoryBtn.frame.origin.y,
+                                                                    self.returnAccessoryBtn.frame.size.width,
+                                                                    self.returnAccessoryBtn.frame.size.height);                     }
                      completion:^(BOOL finished){
                          self.returnAccessoryBtn.translatesAutoresizingMaskIntoConstraints = NO;
                      }];

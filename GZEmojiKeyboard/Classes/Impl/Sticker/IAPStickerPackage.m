@@ -8,6 +8,8 @@
 
 #import "IAPStickerPackage.h"
 #import "IAPStickerPanelControl.h"
+#import "IAPCommonUtils.h"
+
 
 @implementation IAPStickerPackage
 
