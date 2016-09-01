@@ -1,14 +1,14 @@
 //
-//  IAPUIKitIconFontHelper.m
+//  GZUIKitIconFontHelper.m
 //  GZEmojiKeyboard
 //
 //  Created by zhaoy on 31/8/16.
 //  Copyright © 2016 com.gz. All rights reserved.
 //
 
-#import "IAPUIKitIconFontHelper.h"
+#import "GZUIKitIconFontHelper.h"
 
-@implementation IAPUIKitIconFontHelper
+@implementation GZUIKitIconFontHelper
 
 + (NSString *)_charStringFromHexString:(NSString *)string
 {
@@ -36,7 +36,7 @@
 + (UIBarButtonItem *)barButtonItemWithIdentifier:(NSString *)identifier target:(id)target selector:(SEL)selector
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.titleLabel.font = [IAPUIKitIconFontHelper iconFontWithSize:23];
+    button.titleLabel.font = [GZUIKitIconFontHelper iconFontWithSize:23];
     [button setTitle:[self _charStringFromHexString:identifier] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithRGB:0xffffff alpha:0.8] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithRGB:0xffffff alpha:0.5] forState:UIControlStateHighlighted];
@@ -52,7 +52,7 @@
 + (UILabel *)labelWithIdentifier:(NSString *)identifier tintColor:(UIColor *)color fontSize:(CGFloat)fontSize
 {
     UILabel *label = [[UILabel alloc] init];
-    label.font = [IAPUIKitIconFontHelper iconFontWithSize:fontSize];
+    label.font = [GZUIKitIconFontHelper iconFontWithSize:fontSize];
     label.textColor = color;
     label.text = [self _charStringFromHexString:identifier];
     return label;
@@ -61,7 +61,7 @@
 + (UIButton *)buttonWithIdentifier:(NSString *)identifier tintColor:(UIColor *)color fontSize:(CGFloat)fontSize
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.titleLabel.font = [IAPUIKitIconFontHelper iconFontWithSize:fontSize];
+    button.titleLabel.font = [GZUIKitIconFontHelper iconFontWithSize:fontSize];
     button.titleLabel.textColor = color;
     [button setTitleColor:color forState:UIControlStateNormal];
     [button setTitle:[self _charStringFromHexString:identifier] forState:UIControlStateNormal];
@@ -70,11 +70,11 @@
 
 + (UIImage *)imageWithIdentifier:(NSString *)identifier tintColor:(UIColor *)color size:(CGSize)size
 {
-    UIFont *font = [IAPUIKitIconFontHelper iconFontWithSize:MIN(size.width, size.height)];
+    UIFont *font = [GZUIKitIconFontHelper iconFontWithSize:MIN(size.width, size.height)];
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     
     [color set];
-    NSString *iconStr = [IAPUIKitIconFontHelper stringWithIdentifier:identifier];
+    NSString *iconStr = [GZUIKitIconFontHelper stringWithIdentifier:identifier];
     [iconStr drawInRect:CGRectMake(0, 0, size.width, size.height) withAttributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:color}];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

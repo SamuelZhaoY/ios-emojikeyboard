@@ -1,14 +1,14 @@
 //
-//  IAPCommonUtils.m
+//  GZCommonUtils.m
 //  GZEmojiKeyboard
 //
 //  Created by zhaoy on 31/8/16.
 //  Copyright © 2016 com.gz. All rights reserved.
 //
 
-#import "IAPCommonUtils.h"
+#import "GZCommonUtils.h"
 
-@implementation IAPCommonUtils
+@implementation GZCommonUtils
 
 + (CGFloat)getMainScreenWidth
 {

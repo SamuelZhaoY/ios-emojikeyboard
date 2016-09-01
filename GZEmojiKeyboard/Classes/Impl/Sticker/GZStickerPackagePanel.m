@@ -1,24 +1,24 @@
 //
-//  IAPStickerPackagePanel.m
+//  GZStickerPackagePanel.m
 //  MobileFramework
 //
 //  Created by zhaoy on 14/10/15.
-//  Copyright © 2015 Alipay. All rights reserved.
+//  Copyright © 2015 com.gz. All rights reserved.
 //
 
-#import "IAPStickerPackagePanel.h"
-#import "IAPStickerPanelControl.h"
-#import "IAPStickerPackage.h"
-#import "IAPStickerContentScrollView.h"
+#import "GZStickerPackagePanel.h"
+#import "GZStickerPanelControl.h"
+#import "GZStickerPackage.h"
+#import "GZStickerContentScrollView.h"
 
-@interface IAPStickerPackagePanel()<IAPStickerContentScrollViewControl>
+@interface GZStickerPackagePanel()<GZStickerContentScrollViewControl>
 
 @property(strong, nonatomic)NSArray* stickerList;
 @property(strong, nonatomic)UIView* currentHighlightView;
 
 @end
 
-@implementation IAPStickerPackagePanel
+@implementation GZStickerPackagePanel
 
 - (instancetype)init
 {
@@ -55,7 +55,7 @@
     self.tag = -1;
     
     float offsetX = 0;
-    for (IAPStickerPackage* stickerPackage in self.stickerList) {
+    for (GZStickerPackage* stickerPackage in self.stickerList) {
         UILabel* stickerTab = [UILabel new];
         [self addSubview:stickerTab];
         stickerTab.text = stickerPackage.icon;
@@ -65,13 +65,13 @@
         stickerTab.tag = [self.stickerList indexOfObject:stickerPackage];
         [stickerTab addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onStickerTabTapped:)]];
         [stickerTab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo([NSNumber numberWithInteger:IAP_EMO_PACK_ITEM_WIDTH]);
-            make.height.equalTo([NSNumber numberWithInteger:IAP_EMO_PACK_BAR_HEIGHT]);
+            make.width.equalTo([NSNumber numberWithInteger:GZ_EMO_PACK_ITEM_WIDTH]);
+            make.height.equalTo([NSNumber numberWithInteger:GZ_EMO_PACK_BAR_HEIGHT]);
             make.leading.equalTo([NSNumber numberWithInteger:offsetX]);
             make.top.equalTo(self.mas_top);
         }];
         
-        offsetX += IAP_EMO_PACK_ITEM_WIDTH;
+        offsetX += GZ_EMO_PACK_ITEM_WIDTH;
         
          // by default make first sticker package
         if ([self.stickerList firstObject] == stickerPackage) {
@@ -83,7 +83,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.contentSize = CGSizeMake(self.stickerList.count *  IAP_EMO_PACK_ITEM_WIDTH, IAP_EMO_PACK_BAR_HEIGHT);
+    self.contentSize = CGSizeMake(self.stickerList.count *  GZ_EMO_PACK_ITEM_WIDTH, GZ_EMO_PACK_BAR_HEIGHT);
 }
 
 #pragma mark - Panel Click
@@ -101,7 +101,7 @@
     }
 
     [self.currentHighlightView setBackgroundColor:[UIColor clearColor]];
-    [stickerTab setBackgroundColor:[UIColor colorWithRGB:IAPUIKitFontGrey4]];
+    [stickerTab setBackgroundColor:[UIColor colorWithRGB:GZUIKitFontGrey4]];
     self.currentHighlightView = stickerTab;
     
     // Scroll rect to visible

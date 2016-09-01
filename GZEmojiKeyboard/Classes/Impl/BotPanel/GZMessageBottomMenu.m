@@ -1,24 +1,24 @@
 //
-//  IAPMessageBottomMenu.m
+//  GZMessageBottomMenu.m
 //  MobileFramework
 //
 //  Created by zhaoy on 5/10/15.
-//  Copyright © 2015 Alipay. All rights reserved.
+//  Copyright © 2015 com.gz. All rights reserved.
 //
 
-#import "IAPMessageBottomMenu.h"
-#import "IAPMessageBottomViewContainer.h"
-#import "IAPCommonUtils.h"
+#import "GZMessageBottomMenu.h"
+#import "GZMessageBottomViewContainer.h"
+#import "GZCommonUtils.h"
 
 
-#define IAP_MESSAGE_BOTTOM_ITEM_SIZE 58.0f
-#define IAP_MESSAGE_BOTTOM_TOP_PADDING 14.0f
-#define IAP_MESSAGE_BOTTOM_TOP_ITEM_TITLE_SPACING 4.0f
+#define GZ_MESSAGE_BOTTOM_ITEM_SIZE 58.0f
+#define GZ_MESSAGE_BOTTOM_TOP_PADDING 14.0f
+#define GZ_MESSAGE_BOTTOM_TOP_ITEM_TITLE_SPACING 4.0f
 
-@implementation IAPMessageBottomMenuItem
+@implementation GZMessageBottomMenuItem
 @end
 
-@interface IAPMessageBottomMenu()<UIScrollViewDelegate>
+@interface GZMessageBottomMenu()<UIScrollViewDelegate>
 
 @property(nonatomic, strong)NSArray* itemArray;
 @property(nonatomic, strong)UIScrollView* scroller;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation IAPMessageBottomMenu
+@implementation GZMessageBottomMenu
 
 - (instancetype)initWithMenuItem:(nonnull NSArray*)menuItems
 {
@@ -57,7 +57,7 @@
     // Check horizon spacing
     float horizontalSpacing;
     UIWindow* currentWindow = [[UIApplication sharedApplication].delegate window];
-    horizontalSpacing = (currentWindow.frame.size.width - 4*IAP_MESSAGE_BOTTOM_ITEM_SIZE)/5;
+    horizontalSpacing = (currentWindow.frame.size.width - 4*GZ_MESSAGE_BOTTOM_ITEM_SIZE)/5;
     
     int pageCount = ceilf(((float)self.itemArray.count)/4);
 
@@ -71,8 +71,8 @@
             make.leading.equalTo(self.mas_leading);
         }];
         
-        self.pageControl.pageIndicatorTintColor = [UIColor colorWithRGB:IAPUIKitUIGrey8];
-        self.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRGB:IAPUIKitFontGrey3];
+        self.pageControl.pageIndicatorTintColor = [UIColor colorWithRGB:GZUIKitUIGrey8];
+        self.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRGB:GZUIKitFontGrey3];
         self.pageControl.numberOfPages = pageCount;
         self.pageControl.currentPage = 0;
         self.pageControl.enabled = NO;
@@ -80,16 +80,16 @@
     
     // Calculate the layout
     float buffOffsetX = 0;
-    for (IAPMessageBottomMenuItem* item in menuItems) {
+    for (GZMessageBottomMenuItem* item in menuItems) {
         UIButton* itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        itemButton.layer.borderColor = [UIColor colorWithRGB:IAPUIKitFontGrey4].CGColor;
+        itemButton.layer.borderColor = [UIColor colorWithRGB:GZUIKitFontGrey4].CGColor;
         itemButton.layer.borderWidth = 0.5f;
         itemButton.layer.cornerRadius = 5.0f;
         
         UILabel* label = [UILabel new];
         label.font = [UIFont systemFontOfSize:10.0];
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor colorWithRGB:IAPUIKitFontGrey3];
+        label.textColor = [UIColor colorWithRGB:GZUIKitFontGrey3];
         label.text = item.itemTitle;
         
         [self.scroller addSubview:itemButton];
@@ -97,8 +97,8 @@
         
         itemButton.clipsToBounds = YES;
         itemButton.contentMode = UIViewContentModeCenter;
-        [itemButton setImage:[IAPUIKitIconFontHelper imageWithIdentifier:item.itemImage tintColor:item.itemColor size:CGSizeMake(40, 41)] forState:UIControlStateNormal];
-        [itemButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:IAPUIKitFontGrey5]] forState:UIControlStateHighlighted];
+        [itemButton setImage:[GZUIKitIconFontHelper imageWithIdentifier:item.itemImage tintColor:item.itemColor size:CGSizeMake(40, 41)] forState:UIControlStateNormal];
+        [itemButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:GZUIKitFontGrey5]] forState:UIControlStateHighlighted];
         [itemButton setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
         
         [itemButton addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
@@ -111,20 +111,20 @@
         }
         
         [itemButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo([NSNumber numberWithFloat:IAP_MESSAGE_BOTTOM_ITEM_SIZE]);
-            make.height.equalTo([NSNumber numberWithFloat:IAP_MESSAGE_BOTTOM_ITEM_SIZE]);
+            make.width.equalTo([NSNumber numberWithFloat:GZ_MESSAGE_BOTTOM_ITEM_SIZE]);
+            make.height.equalTo([NSNumber numberWithFloat:GZ_MESSAGE_BOTTOM_ITEM_SIZE]);
             make.leading.equalTo([NSNumber numberWithFloat:buffOffsetX]);
-            make.top.equalTo(itemButton.superview.mas_top).offset(IAP_MESSAGE_BOTTOM_TOP_PADDING);
+            make.top.equalTo(itemButton.superview.mas_top).offset(GZ_MESSAGE_BOTTOM_TOP_PADDING);
         }];
         
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(itemButton.mas_bottom).offset(IAP_MESSAGE_BOTTOM_TOP_ITEM_TITLE_SPACING);
+            make.top.equalTo(itemButton.mas_bottom).offset(GZ_MESSAGE_BOTTOM_TOP_ITEM_TITLE_SPACING);
             make.centerX.equalTo(itemButton.mas_centerX);
             make.width.equalTo(@80);
             make.height.equalTo(@20);
         }];
         
-        buffOffsetX += (IAP_MESSAGE_BOTTOM_ITEM_SIZE + horizontalSpacing);
+        buffOffsetX += (GZ_MESSAGE_BOTTOM_ITEM_SIZE + horizontalSpacing);
     }
     
     return self;
@@ -136,15 +136,15 @@
     
     // Check page number & adjust scroll content size
     int pageCount = ceilf(((float)self.itemArray.count)/4);
-    self.scroller.contentSize = CGSizeMake(pageCount * [IAPCommonUtils getMainScreenWidth] , IAP_MESSAGE_BOT_MENU_PANEL_HEIGHT);
+    self.scroller.contentSize = CGSizeMake(pageCount * [GZCommonUtils getMainScreenWidth] , GZ_MESSAGE_BOT_MENU_PANEL_HEIGHT);
 }
 
 - (void)click:(UIView*)responder
 {
     if (responder.tag < self.itemArray.count && responder.tag >= 0) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:IAP_MESSAGE_BOT_PANEL_ACTION_FIRE
+        [[NSNotificationCenter defaultCenter] postNotificationName:GZ_MESSAGE_BOT_PANEL_ACTION_FIRE
                                                             object:self
-                                                          userInfo:@{@"action":((IAPMessageBottomMenuItem*)self.itemArray[responder.tag]).action}];
+                                                          userInfo:@{@"action":((GZMessageBottomMenuItem*)self.itemArray[responder.tag]).action}];
     }
 }
 

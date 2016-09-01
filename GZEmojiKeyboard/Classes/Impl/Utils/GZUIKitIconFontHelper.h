@@ -1,5 +1,5 @@
 //
-//  IAPUIKitIconFontHelper.h
+//  GZUIKitIconFontHelper.h
 //  GZEmojiKeyboard
 //
 //  Created by zhaoy on 31/8/16.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IAPUIKitIconFontHelper : NSObject
+@interface GZUIKitIconFontHelper : NSObject
 
 + (UIFont *)iconFontWithSize:(CGFloat)size;
 

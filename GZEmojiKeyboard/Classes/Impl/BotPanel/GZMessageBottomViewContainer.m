@@ -1,24 +1,24 @@
 //
-//  IAPMessageBottonViewContainer.m
+//  GZMessageBottonViewContainer.m
 //  MobileFramework
 //
 //  Created by zhaoy on 21/7/15.
-//  Copyright (c) 2015 Alipay. All rights reserved.
+//  Copyright (c) 2015 com.gz. All rights reserved.
 //
 
-#import "IAPMessageBottomViewContainer.h"
-#import "IAPMessageBottomMenu.h"
-#import "IAPStickerPanelControl.h"
+#import "GZMessageBottomViewContainer.h"
+#import "GZMessageBottomMenu.h"
+#import "GZStickerPanelControl.h"
 
-@interface IAPMessageBottomViewContainer()
+@interface GZMessageBottomViewContainer()
 
-@property(assign, nonatomic)IAP_BottomPanelConfig config;
+@property(assign, nonatomic)GZ_BottomPanelConfig config;
 
 @end
 
-@implementation IAPMessageBottomViewContainer
+@implementation GZMessageBottomViewContainer
 
-- (instancetype)initWithMenuConfig:(IAP_BottomPanelConfig)config
+- (instancetype)initWithMenuConfig:(GZ_BottomPanelConfig)config
 {
     self = [super init];
     self.config = config;
@@ -30,39 +30,39 @@
     return self;
 }
 
-- (IAPStickerPanelControl*)emoControl
+- (GZStickerPanelControl*)emoControl
 {
     if (!_emoControl) {
         // config emoji& sticker control
-        _emoControl = [IAPStickerPanelControl new];
+        _emoControl = [GZStickerPanelControl new];
         [self addSubview:_emoControl];
         [_emoControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.equalTo(self.mas_leading);
             make.top.equalTo(self.mas_top);
             make.width.equalTo(self.mas_width);
-            make.height.equalTo([NSNumber numberWithFloat:IAP_MESSAGE_BOT_STICKER_PANEL_HEIGHT]);
+            make.height.equalTo([NSNumber numberWithFloat:GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT]);
         }];
         
-        [_emoControl setBackgroundColor:[UIColor colorWithRGB:IAPUIKitUIGrey10]];
+        [_emoControl setBackgroundColor:[UIColor colorWithRGB:GZUIKitUIGrey10]];
     }
    
     return _emoControl;
 }
 
-- (IAPMessageBottomMenu*)botMenu
+- (GZMessageBottomMenu*)botMenu
 {
     if (!_botMenu) {
         // config & set bot menu
-        _botMenu = [[IAPMessageBottomMenu alloc] initWithMenuItem:[self checkMenuConfig:self.config]];
+        _botMenu = [[GZMessageBottomMenu alloc] initWithMenuItem:[self checkMenuConfig:self.config]];
         [self addSubview:_botMenu];
         [_botMenu mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.equalTo(self.mas_leading);
             make.top.equalTo(self.mas_top);
             make.width.equalTo(self.mas_width);
-            make.height.equalTo([NSNumber numberWithFloat:IAP_MESSAGE_BOT_MENU_PANEL_HEIGHT]);
+            make.height.equalTo([NSNumber numberWithFloat:GZ_MESSAGE_BOT_MENU_PANEL_HEIGHT]);
         }];
         
-        [_botMenu setBackgroundColor:[UIColor colorWithRGB:IAPUIKitUIGrey10]];
+        [_botMenu setBackgroundColor:[UIColor colorWithRGB:GZUIKitUIGrey10]];
     }
     
     return _botMenu;
@@ -73,13 +73,13 @@
                         change:(NSDictionary<NSString *,id> *)change
                        context:(void *)context
 {
-    if ([object isKindOfClass:[IAPMessageBottomViewContainer class]]) {
+    if ([object isKindOfClass:[GZMessageBottomViewContainer class]]) {
         if ([keyPath isEqualToString:NSStringFromSelector(@selector(panelMode))]) {
             NSNumber* newState = [change objectForKey:NSKeyValueChangeNewKey];
             
-            if ([newState integerValue] == IAP_ACTION && [self.subviews lastObject] == self.botMenu) {
+            if ([newState integerValue] == GZ_ACTION && [self.subviews lastObject] == self.botMenu) {
                 return;
-            } else if ([newState integerValue] == IAP_STICKER && [self.subviews lastObject] == self.emoControl) {
+            } else if ([newState integerValue] == GZ_STICKER && [self.subviews lastObject] == self.emoControl) {
                 [self.emoControl checkLayout];
                 return;
             }
@@ -89,10 +89,10 @@
             }
             
             //bring panel to front & animation
-            if ([newState intValue] == IAP_STICKER) {
+            if ([newState intValue] == GZ_STICKER) {
                 self.emoControl.translatesAutoresizingMaskIntoConstraints = YES;
                 self.emoControl.frame = CGRectMake(self.emoControl.frame.origin.x,
-                                                   IAP_MESSAGE_BOT_MENU_PANEL_HEIGHT,
+                                                   GZ_MESSAGE_BOT_MENU_PANEL_HEIGHT,
                                                    self.emoControl.frame.size.width,
                                                    self.emoControl.frame.size.height);
                 [self bringSubviewToFront:self.emoControl];
@@ -112,7 +112,7 @@
             } else {
                 self.botMenu.translatesAutoresizingMaskIntoConstraints = YES;
                 self.botMenu.frame = CGRectMake(self.botMenu.frame.origin.x,
-                                                   IAP_MESSAGE_BOT_STICKER_PANEL_HEIGHT,
+                                                   GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT,
                                                    self.botMenu.frame.size.width,
                                                    self.botMenu.frame.size.height);
                 [self bringSubviewToFront:self.botMenu];
@@ -137,38 +137,38 @@
 }
 
 // Check menu item according to conversation config
-- (NSArray*)checkMenuConfig:(IAP_BottomPanelConfig)config
+- (NSArray*)checkMenuConfig:(GZ_BottomPanelConfig)config
 {
     NSArray *actionItems = [NSArray new];
-    if (config == IAP_INDIVIDUAL) {
-        IAPMessageBottomMenuItem* transferItem = [IAPMessageBottomMenuItem new];
+    if (config == GZ_INDIVIDUAL) {
+        GZMessageBottomMenuItem* transferItem = [GZMessageBottomMenuItem new];
         transferItem.itemTitle = NSLocalizedString(@"Feature 1", nil);
         transferItem.itemImage = @"e647;";
-        transferItem.itemColor = [UIColor colorWithRGB:IAPUIKitUIColor8];
-        transferItem.action = IAP_MESSAGE_BOT_PANEL_ACTION_TRANSFER;
+        transferItem.itemColor = [UIColor colorWithRGB:GZUIKitUIColor8];
+        transferItem.action = GZ_MESSAGE_BOT_PANEL_ACTION_TRANSFER;
         
-        IAPMessageBottomMenuItem* requestItem = [IAPMessageBottomMenuItem new];
+        GZMessageBottomMenuItem* requestItem = [GZMessageBottomMenuItem new];
         requestItem.itemTitle = NSLocalizedString(@"Feature 2", nil);
         requestItem.itemImage = @"e648";
-        requestItem.itemColor = [UIColor colorWithRGB:IAPUIKitUIColor2];
-        requestItem.action = IAP_MESSAGE_BOT_PANEL_ACTION_REQUEST;
+        requestItem.itemColor = [UIColor colorWithRGB:GZUIKitUIColor2];
+        requestItem.action = GZ_MESSAGE_BOT_PANEL_ACTION_REQUEST;
         
-        IAPMessageBottomMenuItem* nameCardItem = [IAPMessageBottomMenuItem new];
+        GZMessageBottomMenuItem* nameCardItem = [GZMessageBottomMenuItem new];
         nameCardItem.itemTitle = NSLocalizedString(@"Feature 3", nil);
         nameCardItem.itemImage = @"e668";
-        nameCardItem.itemColor = [UIColor colorWithRGB:IAPUIKit_Color_8];
-        nameCardItem.action = IAP_MESSAGE_BOT_PANEL_ACTION_NAME_CARD;
+        nameCardItem.itemColor = [UIColor colorWithRGB:GZUIKit_Color_8];
+        nameCardItem.action = GZ_MESSAGE_BOT_PANEL_ACTION_NAME_CARD;
 
         actionItems = @[transferItem, requestItem, nameCardItem];
 
-    } else if (config == IAP_GROUP) {
+    } else if (config == GZ_GROUP) {
         
         
-        IAPMessageBottomMenuItem* nameCardItem = [IAPMessageBottomMenuItem new];
+        GZMessageBottomMenuItem* nameCardItem = [GZMessageBottomMenuItem new];
         nameCardItem.itemTitle = NSLocalizedString(@"Feature 1", nil);
         nameCardItem.itemImage = @"e668";
-        nameCardItem.itemColor = [UIColor colorWithRGB:IAPUIKit_Color_8];
-        nameCardItem.action = IAP_MESSAGE_BOT_PANEL_ACTION_NAME_CARD;
+        nameCardItem.itemColor = [UIColor colorWithRGB:GZUIKit_Color_8];
+        nameCardItem.action = GZ_MESSAGE_BOT_PANEL_ACTION_NAME_CARD;
         
         actionItems = @[nameCardItem];
     }

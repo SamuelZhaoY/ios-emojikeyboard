@@ -1,5 +1,5 @@
 //
-//  IAPCommonUtils.h
+//  GZCommonUtils.h
 //  GZEmojiKeyboard
 //
 //  Created by zhaoy on 31/8/16.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IAPCommonUtils : NSObject
+@interface GZCommonUtils : NSObject
 
 + (CGFloat)getMainScreenWidth;
 

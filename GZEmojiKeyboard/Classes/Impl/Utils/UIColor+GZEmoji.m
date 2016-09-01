@@ -9,43 +9,43 @@
 #import "UIColor+GZEmoji.h"
 
 // FONT GREY
-NSUInteger const IAPUIKitFontGrey1 = 0x000000;
-NSUInteger const IAPUIKitFontGrey2 = 0x4A4A4A;
-NSUInteger const IAPUIKitFontGrey3 = 0x9B9B9B;
-NSUInteger const IAPUIKitFontGrey4 = 0xBBBBBB;
-NSUInteger const IAPUIKitFontGrey5 = 0xCCCCCC;
-NSUInteger const IAPUIKitFontGrey6 = 0xFFFFFF;
+NSUInteger const GZUIKitFontGrey1 = 0x000000;
+NSUInteger const GZUIKitFontGrey2 = 0x4A4A4A;
+NSUInteger const GZUIKitFontGrey3 = 0x9B9B9B;
+NSUInteger const GZUIKitFontGrey4 = 0xBBBBBB;
+NSUInteger const GZUIKitFontGrey5 = 0xCCCCCC;
+NSUInteger const GZUIKitFontGrey6 = 0xFFFFFF;
 
 // FONT COLOR
-NSUInteger const IAPUIKitFontColor1 = 0x00A0E9;
-NSUInteger const IAPUIKitFontColor2 = 0xFF7C00;
+NSUInteger const GZUIKitFontColor1 = 0x00A0E9;
+NSUInteger const GZUIKitFontColor2 = 0xFF7C00;
 
 // UI GREY
-NSUInteger const IAPUIKitUIGrey1 = 0x000000;
-NSUInteger const IAPUIKitUIGrey2 = 0x333333;
-NSUInteger const IAPUIKitUIGrey3 = 0x4A4A4A;
-NSUInteger const IAPUIKitUIGrey4 = 0x6B6B6B;
-NSUInteger const IAPUIKitUIGrey5 = 0x9B9B9B;
-NSUInteger const IAPUIKitUIGrey6 = 0xCCCCCC;
-NSUInteger const IAPUIKitUIGrey7 = 0xD5D5D5;
-NSUInteger const IAPUIKitUIGrey8 = 0xDDDDDD;
-NSUInteger const IAPUIKitUIGrey9 = 0xE9E9E9;
-NSUInteger const IAPUIKitUIGrey10 = 0xEEEEEE;
-NSUInteger const IAPUIKitUIGrey11 = 0xF4F4F4;
-NSUInteger const IAPUIKitUIGrey12 = 0xFFFFFF;
+NSUInteger const GZUIKitUIGrey1 = 0x000000;
+NSUInteger const GZUIKitUIGrey2 = 0x333333;
+NSUInteger const GZUIKitUIGrey3 = 0x4A4A4A;
+NSUInteger const GZUIKitUIGrey4 = 0x6B6B6B;
+NSUInteger const GZUIKitUIGrey5 = 0x9B9B9B;
+NSUInteger const GZUIKitUIGrey6 = 0xCCCCCC;
+NSUInteger const GZUIKitUIGrey7 = 0xD5D5D5;
+NSUInteger const GZUIKitUIGrey8 = 0xDDDDDD;
+NSUInteger const GZUIKitUIGrey9 = 0xE9E9E9;
+NSUInteger const GZUIKitUIGrey10 = 0xEEEEEE;
+NSUInteger const GZUIKitUIGrey11 = 0xF4F4F4;
+NSUInteger const GZUIKitUIGrey12 = 0xFFFFFF;
 
 // UI COLOR
-NSUInteger const IAPUIKitUIColor1 = 0x00A0E9;
-NSUInteger const IAPUIKitUIColor1_Dark = 0x0078AF;
-NSUInteger const IAPUIKitUIColor2 = 0x16CB3B;
-NSUInteger const IAPUIKitUIColor3 = 0xFF6262;
-NSUInteger const IAPUIKitUIColor4 = 0xFFCD00;
-NSUInteger const IAPUIKitUIColor5 = 0xFF7C00;
-NSUInteger const IAPUIKitUIColor6 = 0x19D5C7;
-NSUInteger const IAPUIKitUIColor7 = 0xA26BF2;
-NSUInteger const IAPUIKitUIColor8 = 0x41aaef;
-NSUInteger const IAPUIKitUIColor9 = 0xD4F2FF;
-NSUInteger const IAPUIKitUIColor10 = 0xE5E5E5;
+NSUInteger const GZUIKitUIColor1 = 0x00A0E9;
+NSUInteger const GZUIKitUIColor1_Dark = 0x0078AF;
+NSUInteger const GZUIKitUIColor2 = 0x16CB3B;
+NSUInteger const GZUIKitUIColor3 = 0xFF6262;
+NSUInteger const GZUIKitUIColor4 = 0xFFCD00;
+NSUInteger const GZUIKitUIColor5 = 0xFF7C00;
+NSUInteger const GZUIKitUIColor6 = 0x19D5C7;
+NSUInteger const GZUIKitUIColor7 = 0xA26BF2;
+NSUInteger const GZUIKitUIColor8 = 0x41aaef;
+NSUInteger const GZUIKitUIColor9 = 0xD4F2FF;
+NSUInteger const GZUIKitUIColor10 = 0xE5E5E5;
 
 
 
@@ -54,252 +54,252 @@ NSUInteger const IAPUIKitUIColor10 = 0xE5E5E5;
 
 #pragma font grey
 
-+ (UIColor *)iap_FontGrey1
++ (UIColor *)GZ_FontGrey1
 {
-    return [UIColor colorWithRGB:IAPUIKitFontGrey1];
+    return [UIColor colorWithRGB:GZUIKitFontGrey1];
 }
 
-+ (UIColor *)iap_FontGrey2
++ (UIColor *)GZ_FontGrey2
 {
-    return [UIColor colorWithRGB:IAPUIKitFontGrey2];
+    return [UIColor colorWithRGB:GZUIKitFontGrey2];
 }
 
-+ (UIColor *)iap_FontGrey3
++ (UIColor *)GZ_FontGrey3
 {
-    return [UIColor colorWithRGB:IAPUIKitFontGrey3];
+    return [UIColor colorWithRGB:GZUIKitFontGrey3];
 }
 
-+ (UIColor *)iap_FontGrey4
++ (UIColor *)GZ_FontGrey4
 {
-    return [UIColor colorWithRGB:IAPUIKitFontGrey4];
+    return [UIColor colorWithRGB:GZUIKitFontGrey4];
 }
 
-+ (UIColor *)iap_FontGrey5
++ (UIColor *)GZ_FontGrey5
 {
-    return [UIColor colorWithRGB:IAPUIKitFontGrey5];
+    return [UIColor colorWithRGB:GZUIKitFontGrey5];
 }
 
-+ (UIColor *)iap_FontGrey6
++ (UIColor *)GZ_FontGrey6
 {
-    return [UIColor colorWithRGB:IAPUIKitFontGrey6];
+    return [UIColor colorWithRGB:GZUIKitFontGrey6];
 }
 
 
 #pragma font color
 
-+ (UIColor *)iap_FontColor1
++ (UIColor *)GZ_FontColor1
 {
-    return [UIColor colorWithRGB:IAPUIKitFontColor1];
+    return [UIColor colorWithRGB:GZUIKitFontColor1];
 }
 
-+ (UIColor *)iap_FontColor2
++ (UIColor *)GZ_FontColor2
 {
-    return [UIColor colorWithRGB:IAPUIKitFontColor2];
+    return [UIColor colorWithRGB:GZUIKitFontColor2];
 }
 
 
 
 #pragma ui grey
 
-+ (UIColor *)iap_Grey1
++ (UIColor *)GZ_Grey1
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey1];
+    return [UIColor colorWithRGB:GZUIKitUIGrey1];
 }
 
-+ (UIColor *)iap_Grey2
++ (UIColor *)GZ_Grey2
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey2];
+    return [UIColor colorWithRGB:GZUIKitUIGrey2];
 }
 
-+ (UIColor *)iap_Grey3
++ (UIColor *)GZ_Grey3
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey3];
+    return [UIColor colorWithRGB:GZUIKitUIGrey3];
 }
 
-+ (UIColor *)iap_Grey4
++ (UIColor *)GZ_Grey4
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey4];
+    return [UIColor colorWithRGB:GZUIKitUIGrey4];
 }
 
-+ (UIColor *)iap_Grey5
++ (UIColor *)GZ_Grey5
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey5];
+    return [UIColor colorWithRGB:GZUIKitUIGrey5];
 }
 
-+ (UIColor *)iap_Grey6
++ (UIColor *)GZ_Grey6
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey6];
+    return [UIColor colorWithRGB:GZUIKitUIGrey6];
 }
 
-+ (UIColor *)iap_Grey7
++ (UIColor *)GZ_Grey7
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey7];
+    return [UIColor colorWithRGB:GZUIKitUIGrey7];
 }
 
-+ (UIColor *)iap_Grey8
++ (UIColor *)GZ_Grey8
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey8];
+    return [UIColor colorWithRGB:GZUIKitUIGrey8];
 }
 
-+ (UIColor *)iap_Grey9
++ (UIColor *)GZ_Grey9
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey9];
+    return [UIColor colorWithRGB:GZUIKitUIGrey9];
 }
 
-+ (UIColor *)iap_Grey10
++ (UIColor *)GZ_Grey10
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey10];
+    return [UIColor colorWithRGB:GZUIKitUIGrey10];
 }
 
-+ (UIColor *)iap_Grey11
++ (UIColor *)GZ_Grey11
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey11];
+    return [UIColor colorWithRGB:GZUIKitUIGrey11];
 }
 
-+ (UIColor *)iap_Grey12
++ (UIColor *)GZ_Grey12
 {
-    return [UIColor colorWithRGB:IAPUIKitUIGrey12];
+    return [UIColor colorWithRGB:GZUIKitUIGrey12];
 }
 
 
 #pragma ui color
 
-+ (UIColor *)iap_Color1
++ (UIColor *)GZ_Color1
 {
-    return [UIColor colorWithRGB:IAPUIKitUIColor1];
+    return [UIColor colorWithRGB:GZUIKitUIColor1];
 }
 
-+ (UIColor *)iap_Color1_Dark
++ (UIColor *)GZ_Color1_Dark
 {
-    return [UIColor colorWithRGB:IAPUIKitUIColor1_Dark];
+    return [UIColor colorWithRGB:GZUIKitUIColor1_Dark];
 }
 
-+ (UIColor *)iap_Color2
++ (UIColor *)GZ_Color2
 {
-    return [UIColor colorWithRGB:IAPUIKitUIColor2];
+    return [UIColor colorWithRGB:GZUIKitUIColor2];
 }
 
-+ (UIColor *)iap_Color3
++ (UIColor *)GZ_Color3
 {
-    return [UIColor colorWithRGB:IAPUIKitUIColor3];
+    return [UIColor colorWithRGB:GZUIKitUIColor3];
 }
 
-+ (UIColor *)iap_Color4
++ (UIColor *)GZ_Color4
 {
-    return [UIColor colorWithRGB:IAPUIKitUIColor4];
+    return [UIColor colorWithRGB:GZUIKitUIColor4];
 }
 
-+ (UIColor *)iap_Color5
++ (UIColor *)GZ_Color5
 {
-    return [UIColor colorWithRGB:IAPUIKitUIColor5];
+    return [UIColor colorWithRGB:GZUIKitUIColor5];
 }
 
-+ (UIColor *)iap_Color6
++ (UIColor *)GZ_Color6
 {
-    return [UIColor colorWithRGB:IAPUIKitUIColor6];
+    return [UIColor colorWithRGB:GZUIKitUIColor6];
 }
 
-+ (UIColor *)iap_Color7
++ (UIColor *)GZ_Color7
 {
-    return [UIColor colorWithRGB:IAPUIKitUIColor7];
+    return [UIColor colorWithRGB:GZUIKitUIColor7];
 }
 
 
 
 #pragma deprecated color method
 
-+ (UIColor *)iap_C1
++ (UIColor *)GZ_C1
 {
-    return [UIColor colorWithRGB:IAPUIKitFontGrey1];
+    return [UIColor colorWithRGB:GZUIKitFontGrey1];
 }
 
-+ (UIColor *)iap_C2
++ (UIColor *)GZ_C2
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_2];
+    return [UIColor colorWithRGB:GZUIKit_Color_2];
 }
 
-+ (UIColor *)iap_C3
++ (UIColor *)GZ_C3
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_3];
+    return [UIColor colorWithRGB:GZUIKit_Color_3];
 }
 
-+ (UIColor *)iap_C4
++ (UIColor *)GZ_C4
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_4];
+    return [UIColor colorWithRGB:GZUIKit_Color_4];
 }
 
-+ (UIColor *)iap_C5
++ (UIColor *)GZ_C5
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_5];
+    return [UIColor colorWithRGB:GZUIKit_Color_5];
 }
 
-+ (UIColor *)iap_C6
++ (UIColor *)GZ_C6
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_6];
+    return [UIColor colorWithRGB:GZUIKit_Color_6];
 }
 
-+ (UIColor *)iap_C7
++ (UIColor *)GZ_C7
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_7];
+    return [UIColor colorWithRGB:GZUIKit_Color_7];
 }
-+ (UIColor *)iap_C7Highlight
++ (UIColor *)GZ_C7Highlight
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_7_Highlight];
-}
-
-+ (UIColor *)iap_C8
-{
-    return [UIColor colorWithRGB:IAPUIKit_Color_8];
+    return [UIColor colorWithRGB:GZUIKit_Color_7_Highlight];
 }
 
-+ (UIColor *)iap_C9
++ (UIColor *)GZ_C8
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_9];
+    return [UIColor colorWithRGB:GZUIKit_Color_8];
 }
 
-+ (UIColor *)iap_C10
++ (UIColor *)GZ_C9
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_10];
-}
-+ (UIColor *)iap_C11
-{
-    return [UIColor colorWithRGB:IAPUIKit_Color_11];
-}
-+ (UIColor *)iap_C12
-{
-    return [UIColor colorWithRGB:IAPUIKit_Color_12];
-}
-+ (UIColor *)iap_C13
-{
-    return [UIColor colorWithRGB:IAPUIKit_Color_13];
-}
-+ (UIColor *)iap_C14
-{
-    return [UIColor colorWithRGB:IAPUIKit_Color_14];
-}
-+ (UIColor *)iap_C15
-{
-    return [UIColor colorWithRGB:IAPUIKit_Color_15];
+    return [UIColor colorWithRGB:GZUIKit_Color_9];
 }
 
-+ (UIColor *)iap_C16
++ (UIColor *)GZ_C10
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_16];
+    return [UIColor colorWithRGB:GZUIKit_Color_10];
+}
++ (UIColor *)GZ_C11
+{
+    return [UIColor colorWithRGB:GZUIKit_Color_11];
+}
++ (UIColor *)GZ_C12
+{
+    return [UIColor colorWithRGB:GZUIKit_Color_12];
+}
++ (UIColor *)GZ_C13
+{
+    return [UIColor colorWithRGB:GZUIKit_Color_13];
+}
++ (UIColor *)GZ_C14
+{
+    return [UIColor colorWithRGB:GZUIKit_Color_14];
+}
++ (UIColor *)GZ_C15
+{
+    return [UIColor colorWithRGB:GZUIKit_Color_15];
 }
 
-+ (UIColor *)iap_C17
++ (UIColor *)GZ_C16
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_17];
+    return [UIColor colorWithRGB:GZUIKit_Color_16];
 }
 
-+ (UIColor *)iap_C18
++ (UIColor *)GZ_C17
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_18];
+    return [UIColor colorWithRGB:GZUIKit_Color_17];
 }
 
-+ (UIColor *)iap_C19
++ (UIColor *)GZ_C18
 {
-    return [UIColor colorWithRGB:IAPUIKit_Color_19];
+    return [UIColor colorWithRGB:GZUIKit_Color_18];
+}
+
++ (UIColor *)GZ_C19
+{
+    return [UIColor colorWithRGB:GZUIKit_Color_19];
 }
 
 

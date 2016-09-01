@@ -3,43 +3,43 @@
 //  MobileFramework
 //
 //  Created by zhaoy on 13/10/15.
-//  Copyright © 2015 Alipay. All rights reserved.
+//  Copyright © 2015 com.gz. All rights reserved.
 //
 
-#import "IAPStickerContentScrollView.h"
-#import "IAPStickerPackage.h"
-#import "IAPMessageBottomViewContainer.h"
-#import "IAPExpandableInputView.h"
-#import "IAPStickerPanelControl.h"
-#import "IAPStickerScrollPage.h"
-#import "IAPStickerPackagePanel.h"
-#import "IAPStickerPanelLayoutStrategy.h"
-#import "IAPCommonUtils.h"
+#import "GZStickerContentScrollView.h"
+#import "GZStickerPackage.h"
+#import "GZMessageBottomViewContainer.h"
+#import "GZExpandableInputView.h"
+#import "GZStickerPanelControl.h"
+#import "GZStickerScrollPage.h"
+#import "GZStickerPackagePanel.h"
+#import "GZStickerPanelLayoutStrategy.h"
+#import "GZCommonUtils.h"
 
-NSString* const PAGE_INENTIFIER = @"IAP_STICKER_IDENTIFIER";
+NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
 
-@interface IAPStickerContentScrollView()<UICollectionViewDataSource,IAPStickerPackagePanelControl,UICollectionViewDelegate>
+@interface GZStickerContentScrollView()<UICollectionViewDataSource,GZStickerPackagePanelControl,UICollectionViewDelegate>
 
-@property(weak, nonatomic)IAPExpandableInputView* accessoryInput;
+@property(weak, nonatomic)GZExpandableInputView* accessoryInput;
 @property(assign, nonatomic)BOOL isInLongPress;
-@property(strong, nonatomic)IAPStickerPackage* currentPackage;
+@property(strong, nonatomic)GZStickerPackage* currentPackage;
 @property(strong, nonatomic)NSArray* stickerPackages;
 @property(strong, nonatomic)NSMutableArray* pageObjects;
 
 @end
 
-@interface IAPStickerPage :NSObject
+@interface GZStickerPage :NSObject
 
-@property(weak, nonatomic)IAPStickerPackage* packageInfo;
+@property(weak, nonatomic)GZStickerPackage* packageInfo;
 @property(assign, nonatomic)int pageIndex;
 @property(assign, nonatomic)int pageCount;
 
 @end
 
-@implementation IAPStickerPage
+@implementation GZStickerPage
 @end
 
-@implementation IAPStickerContentScrollView
+@implementation GZStickerContentScrollView
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout
 {
@@ -52,12 +52,12 @@ NSString* const PAGE_INENTIFIER = @"IAP_STICKER_IDENTIFIER";
     self.dataSource = self;
     self.delegate = self;
     self.pageObjects = [NSMutableArray new];
-    [self registerClass:[IAPStickerScrollPage class] forCellWithReuseIdentifier:PAGE_INENTIFIER];
+    [self registerClass:[GZStickerScrollPage class] forCellWithReuseIdentifier:PAGE_INENTIFIER];
 
     return self;
 }
 
-- (void)configAccessoryInput:(IAPExpandableInputView*)input
+- (void)configAccessoryInput:(GZExpandableInputView*)input
 {
     self.accessoryInput = input;
 }
@@ -71,22 +71,22 @@ NSString* const PAGE_INENTIFIER = @"IAP_STICKER_IDENTIFIER";
     
     // Calculate total page number 
     int pageNumber = 0;
-    for (IAPStickerPackage* stickerPackage in self.stickerPackages) {
+    for (GZStickerPackage* stickerPackage in self.stickerPackages) {
         pageNumber += [stickerPackage checkPageCount];
     }
     
     // Check about the overall content width
-    self.contentSize = CGSizeMake(pageNumber * [IAPCommonUtils getMainScreenWidth], IAP_MESSAGE_BOT_STICKER_PANEL_HEIGHT - IAP_EMO_PACK_BAR_HEIGHT - 15);
-    ((IAPStickerPanelLayoutStrategy*)self.collectionViewLayout).numberOfPage = pageNumber;
+    self.contentSize = CGSizeMake(pageNumber * [GZCommonUtils getMainScreenWidth], GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT - GZ_EMO_PACK_BAR_HEIGHT - 15);
+    ((GZStickerPanelLayoutStrategy*)self.collectionViewLayout).numberOfPage = pageNumber;
     
     // Initialize page count
-    IAPStickerPackage* emojiPack = [IAPStickerPackage defaultStickerPackage];
+    GZStickerPackage* emojiPack = [GZStickerPackage defaultStickerPackage];
     self.pageControl.numberOfPages = [emojiPack checkPageCount];
     
     // Load paging object, calculate total page count
-    for (IAPStickerPackage* stickerPackage in self.stickerPackages) {
+    for (GZStickerPackage* stickerPackage in self.stickerPackages) {
         for (int pageIndex = 0; pageIndex < [stickerPackage checkPageCount]; pageIndex++) {
-            IAPStickerPage* pageInfo = [IAPStickerPage new];
+            GZStickerPage* pageInfo = [GZStickerPage new];
             pageInfo.packageInfo = stickerPackage;
             pageInfo.pageIndex = pageIndex;
             pageInfo.pageCount = [stickerPackage checkPageCount];
@@ -109,7 +109,7 @@ NSString* const PAGE_INENTIFIER = @"IAP_STICKER_IDENTIFIER";
         return;
     }
     
-    IAPStickerPage* pageObject = [self.pageObjects objectAtIndex:page];
+    GZStickerPage* pageObject = [self.pageObjects objectAtIndex:page];
     self.pageControl.currentPage = pageObject.pageIndex;
     self.pageControl.numberOfPages = pageObject.pageCount;
     
@@ -128,7 +128,7 @@ NSString* const PAGE_INENTIFIER = @"IAP_STICKER_IDENTIFIER";
 // Check about total page numbers
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     int pageNumber = 0;
-    for (IAPStickerPackage* stickerPackage in self.stickerPackages) {
+    for (GZStickerPackage* stickerPackage in self.stickerPackages) {
         pageNumber += [stickerPackage checkPageCount];
     };
     return pageNumber;
@@ -141,9 +141,9 @@ NSString* const PAGE_INENTIFIER = @"IAP_STICKER_IDENTIFIER";
 
 // Check about cell layout
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    IAPStickerScrollPage *cell = (IAPStickerScrollPage *)[cv dequeueReusableCellWithReuseIdentifier:PAGE_INENTIFIER forIndexPath:indexPath];
+    GZStickerScrollPage *cell = (GZStickerScrollPage *)[cv dequeueReusableCellWithReuseIdentifier:PAGE_INENTIFIER forIndexPath:indexPath];
     // Index raw indicates the page number
-    IAPStickerPage* currentPage = [self.pageObjects objectAtIndex:indexPath.row];
+    GZStickerPage* currentPage = [self.pageObjects objectAtIndex:indexPath.row];
     cell.accessoryInput = self.accessoryInput;
     [cell updateStickerPackage:currentPage.packageInfo atIndex:currentPage.pageIndex];
     return cell;
@@ -170,8 +170,8 @@ NSString* const PAGE_INENTIFIER = @"IAP_STICKER_IDENTIFIER";
     float scrollX = 0;
     // Scroll to page, calc offset
     for (int index = 0; index < packageIndex; index++) {
-        IAPStickerPackage* package = [self.stickerPackages objectAtIndex:index];
-        scrollX += [package checkPageCount]* [IAPCommonUtils getMainScreenWidth];
+        GZStickerPackage* package = [self.stickerPackages objectAtIndex:index];
+        scrollX += [package checkPageCount]* [GZCommonUtils getMainScreenWidth];
     }
     
     self.currentPackage = [self.stickerPackages objectAtIndex:packageIndex];

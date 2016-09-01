@@ -1,30 +1,30 @@
 //
-//  IAPStickerPackage.h
+//  GZStickerPackage.h
 //  MobileFramework
 //
 //  Created by zhaoy on 5/10/15.
-//  Copyright © 2015 Alipay. All rights reserved.
+//  Copyright © 2015 com.gz. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, IAP_STICKER_TYPE)
+typedef NS_ENUM(NSUInteger, GZ_STICKER_TYPE)
 {
     // package is set of emoji
-    IAP_TYPE_EMOJI = 0,
+    GZ_TYPE_EMOJI = 0,
     
     // package is set of stickers
-    IAP_TYPE_STICKER,
+    GZ_TYPE_STICKER,
 };
 
-@interface IAPStickerPackage : NSObject
+@interface GZStickerPackage : NSObject
 
 @property(nonatomic, strong)NSArray* contentArray;
-@property(nonatomic, assign)IAP_STICKER_TYPE type;
+@property(nonatomic, assign)GZ_STICKER_TYPE type;
 @property(nonatomic, strong)NSString* title;
 @property(nonatomic, strong)NSString* icon;
 
-+ (IAPStickerPackage*)defaultStickerPackage;
++ (GZStickerPackage*)defaultStickerPackage;
 
 + (NSArray*)loadLocalPackages;
 
@@ -42,14 +42,14 @@ typedef NS_ENUM(NSUInteger, IAP_STICKER_TYPE)
 
 @end
 
-@interface IAPStickerItem : NSObject
+@interface GZStickerItem : NSObject
 
 @property(strong, nonatomic)NSString* resource;
 @property(strong, nonatomic)NSString* name;
-@property(assign, nonatomic)IAP_STICKER_TYPE stickerType;
+@property(assign, nonatomic)GZ_STICKER_TYPE stickerType;
 
-- (int)checkCurrentPageInPackage:(IAPStickerPackage*)package;
+- (int)checkCurrentPageInPackage:(GZStickerPackage*)package;
 
-- (int)checkIndexInPage:(IAPStickerPackage*)package;
+- (int)checkIndexInPage:(GZStickerPackage*)package;
 
 @end
