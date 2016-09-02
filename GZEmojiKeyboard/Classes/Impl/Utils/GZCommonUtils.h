@@ -12,8 +12,6 @@
 
 + (CGFloat)getMainScreenWidth;
 
-+ (CGFloat)getMainScreenHeight;
-
 + (CGFloat)getNavigationHeight;
 
 @end

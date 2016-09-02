@@ -8,8 +8,6 @@
 
 #import "GZStickerContentScrollView.h"
 #import "GZStickerPackage.h"
-#import "GZMessageBottomViewContainer.h"
-#import "GZExpandableInputView.h"
 #import "GZStickerPanelControl.h"
 #import "GZStickerScrollPage.h"
 #import "GZStickerPackagePanel.h"

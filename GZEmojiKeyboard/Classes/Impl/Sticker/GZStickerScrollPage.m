@@ -8,7 +8,6 @@
 
 #import "GZStickerScrollPage.h"
 #import "GZStickerPackage.h"
-#import "GZExpandableInputView.h"
 #import "GZStickerPanelControl.h"
 
 @interface GZEmojiIcon : UILabel
@@ -246,7 +245,6 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
         GZStickerItem* stickerItem = [emojiPack.contentArray objectAtIndex:recognizer.view.tag];
         if (stickerItem.stickerType == GZ_TYPE_EMOJI) {
             // Hanlde emoji input insertion
-            [self.accessoryInput insertText:stickerItem.resource];
         } else if (stickerItem.stickerType == GZ_TYPE_STICKER) {
             // Hanlde sticker sending
         }
@@ -255,7 +253,6 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
 
 - (void)deleteInputChar
 {
-    [self.accessoryInput deleteBackward];
 }
 
 # pragma mark -  Popup view on drag

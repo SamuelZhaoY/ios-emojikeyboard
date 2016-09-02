@@ -15,11 +15,6 @@
     return [UIScreen mainScreen].bounds.size.width;
 }
 
-+ (CGFloat)getMainScreenHeight
-{
-    return [UIScreen mainScreen].bounds.size.height;
-}
-
 + (CGFloat)getNavigationHeight
 {
     return 44 + [UIApplication sharedApplication].statusBarFrame.size.height;

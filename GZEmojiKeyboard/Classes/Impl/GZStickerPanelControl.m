@@ -9,8 +9,6 @@
 #import "GZStickerPanelControl.h"
 #import <QuartzCore/QuartzCore.h>
 #import "GZStickerPackage.h"
-#import "GZExpandableInputView.h"
-#import "GZMessageBottomViewContainer.h"
 #import "GZStickerContentScrollView.h"
 #import "GZStickerPackagePanel.h"
 #import "GZStickerPanelLayoutStrategy.h"
@@ -137,7 +135,6 @@ const float GZ_EMO_ICON_SIZE = 35;
 
 - (void)sendInput:(UIView*)responder
 {
-    [self.associatedInput checkForSubmit:self.associatedInput];
 }
 
 - (void)toggleSendKeyAccessory:(BOOL)isOn
