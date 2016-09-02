@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7F2EB5251D7315D700DA2C9D /* GZEmojiKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F2EB5241D7315D700DA2C9D /* GZEmojiKeyboard.h */; };
-		7F2EB5AC1D771C5800DA2C9D /* GZStickerPanelControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F2EB5A41D771C5800DA2C9D /* GZStickerPanelControl.h */; };
+		7F2EB5AC1D771C5800DA2C9D /* GZStickerPanelControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F2EB5A41D771C5800DA2C9D /* GZStickerPanelControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7F2EB5AD1D771C5800DA2C9D /* GZStickerPanelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2EB5A51D771C5800DA2C9D /* GZStickerPanelControl.m */; };
 		7F2EB5C21D771CA300DA2C9D /* GZStickerContentScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F2EB5B81D771CA300DA2C9D /* GZStickerContentScrollView.h */; };
 		7F2EB5C31D771CA300DA2C9D /* GZStickerContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2EB5B91D771CA300DA2C9D /* GZStickerContentScrollView.m */; };
@@ -34,7 +34,6 @@
 		7F2EB4F01D730F8000DA2C9D /* GZEmojiKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GZEmojiKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F2EB4F51D730F8000DA2C9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F2EB5241D7315D700DA2C9D /* GZEmojiKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GZEmojiKeyboard.h; path = Classes/GZEmojiKeyboard.h; sourceTree = "<group>"; };
-		7F2EB5971D74728100DA2C9D /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Frameworks/Masonry.framework; sourceTree = "<group>"; };
 		7F2EB5991D7472CF00DA2C9D /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7F2EB5A41D771C5800DA2C9D /* GZStickerPanelControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GZStickerPanelControl.h; path = Classes/Impl/GZStickerPanelControl.h; sourceTree = "<group>"; };
 		7F2EB5A51D771C5800DA2C9D /* GZStickerPanelControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GZStickerPanelControl.m; path = Classes/Impl/GZStickerPanelControl.m; sourceTree = "<group>"; };
@@ -72,7 +71,6 @@
 		7F2EB4E61D730F8000DA2C9D = {
 			isa = PBXGroup;
 			children = (
-				7F2EB5971D74728100DA2C9D /* Masonry.framework */,
 				7F2EB4F21D730F8000DA2C9D /* GZEmojiKeyboard */,
 				7F2EB4F11D730F8000DA2C9D /* Products */,
 			);
@@ -147,9 +145,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F2EB5AC1D771C5800DA2C9D /* GZStickerPanelControl.h in Headers */,
 				7F2EB5DB1D77334300DA2C9D /* UIImage+GZEmoji.h in Headers */,
 				7F2EB5CF1D77238600DA2C9D /* GZCommonUtils.h in Headers */,
-				7F2EB5AC1D771C5800DA2C9D /* GZStickerPanelControl.h in Headers */,
 				7F2EB5C81D771CA300DA2C9D /* GZStickerPanelLayoutStrategy.h in Headers */,
 				7F2EB5D31D77259D00DA2C9D /* UIColor+GZEmoji.h in Headers */,
 				7F2EB5CA1D771CA300DA2C9D /* GZStickerScrollPage.h in Headers */,
@@ -351,6 +349,7 @@
 				INFOPLIST_FILE = GZEmojiKeyboard/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gz.GZEmojiKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -373,6 +372,7 @@
 				INFOPLIST_FILE = GZEmojiKeyboard/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gz.GZEmojiKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
