@@ -18,7 +18,7 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
 
 @interface GZStickerContentScrollView()<UICollectionViewDataSource,GZStickerPackagePanelControl,UICollectionViewDelegate>
 
-@property(weak, nonatomic)GZExpandableInputView* accessoryInput;
+@property(weak, nonatomic)UITextField* accessoryInput;
 @property(assign, nonatomic)BOOL isInLongPress;
 @property(strong, nonatomic)GZStickerPackage* currentPackage;
 @property(strong, nonatomic)NSArray* stickerPackages;
@@ -55,7 +55,7 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
     return self;
 }
 
-- (void)configAccessoryInput:(GZExpandableInputView*)input
+- (void)configAccessoryInput:(UITextField*)input
 {
     self.accessoryInput = input;
 }

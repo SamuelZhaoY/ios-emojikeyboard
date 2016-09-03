@@ -129,7 +129,7 @@ const float GZ_EMO_ICON_SIZE = 35;
     }
 }
 
-- (void)setAssociatedInput:(GZExpandableInputView *)associatedInput
+- (void)setAssociatedInput:(UITextField *)associatedInput
 {
     _associatedInput = associatedInput;
     [self.contentScrollView configAccessoryInput:associatedInput];

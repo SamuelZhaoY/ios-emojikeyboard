@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @class GZStickerPackage;
-@class GZExpandableInputView;
 @interface GZStickerScrollPage : UICollectionViewCell
-@property(weak, nonatomic)GZExpandableInputView* accessoryInput;
+@property(weak, nonatomic)UITextField* accessoryInput;
 - (void)updateStickerPackage:(GZStickerPackage*)stickerPackage atIndex:(int)index;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@class GZExpandableInputView;
 
 @protocol GZStickerContentScrollViewControl <NSObject>
 
@@ -22,7 +21,7 @@
 @property(weak, nonatomic)UIPageControl* pageControl;
 @property(weak, nonatomic)id<GZStickerContentScrollViewControl> scrollContentDelegate;
 
-- (void)configAccessoryInput:(GZExpandableInputView*)input;
+- (void)configAccessoryInput:(UITextField*)input;
 
 - (void)updateContentPanel:(NSArray*)stickerPackages;
 
