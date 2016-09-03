@@ -34,6 +34,7 @@
                                                     green:(float)0xEE/0xFF
                                                      blue:(float)0xEE/0xFF
                                                     alpha:1.0]];
+    _emoControl.associatedInput = self.emojiInput;
     
     self.view.userInteractionEnabled = YES;
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self

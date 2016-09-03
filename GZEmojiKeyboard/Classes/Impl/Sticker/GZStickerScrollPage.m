@@ -248,6 +248,7 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
         GZStickerItem* stickerItem = [emojiPack.contentArray objectAtIndex:recognizer.view.tag];
         if (stickerItem.stickerType == GZ_TYPE_EMOJI) {
             // Hanlde emoji input insertion
+            self.accessoryInput.text = [self.accessoryInput.text stringByAppendingString:stickerItem.resource];
         } else if (stickerItem.stickerType == GZ_TYPE_STICKER) {
             // Hanlde sticker sending
         }
@@ -256,6 +257,24 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
 
 - (void)deleteInputChar
 {
+    // Each emoji icon occupies length of 2
+    long textLength = self.accessoryInput.text.length;
+    int backDeleteDistance;
+    if (textLength == 1) {
+        
+        backDeleteDistance = 1;
+        
+    } else if (textLength > 1) {
+        NSString* emojiContent = [self.accessoryInput.text substringWithRange:NSMakeRange(textLength - 2, 2)];
+        
+        if ([[GZStickerPackage rawEmoji] indexOfObject:emojiContent] != NSNotFound) {
+            backDeleteDistance = 2;
+        } else {
+            backDeleteDistance = 1;
+        }
+    }
+    
+    self.accessoryInput.text = [self.accessoryInput.text substringToIndex:textLength - backDeleteDistance];
 }
 
 # pragma mark -  Popup view on drag

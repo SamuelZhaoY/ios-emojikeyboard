@@ -24,6 +24,8 @@ typedef NS_ENUM(NSUInteger, GZ_STICKER_TYPE)
 @property(nonatomic, strong)NSString* title;
 @property(nonatomic, strong)NSString* icon;
 
++ (NSArray*)rawEmoji;
+
 + (GZStickerPackage*)defaultStickerPackage;
 
 + (NSArray*)loadLocalPackages;
