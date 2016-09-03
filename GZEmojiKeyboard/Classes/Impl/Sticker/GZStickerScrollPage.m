@@ -9,6 +9,7 @@
 #import "GZStickerScrollPage.h"
 #import "GZStickerPackage.h"
 #import "GZStickerPanelControl.h"
+#import "GZCommonUtils.h"
 
 @interface GZEmojiIcon : UILabel
 
@@ -130,11 +131,13 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
 
 - (void)displayOnRectAnchor:(UIView*)anchorView
 {
+    CGPoint pointInContentView = [anchorView convertPoint:anchorView.frame.origin toView:anchorView.superview.superview.superview.superview];
+    
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@(GZ_EMOJI_LENS_WIDTH));
         make.height.equalTo(@(GZ_EMOJI_LENS_HEIGHT));
-        make.leading.equalTo(@(anchorView.frame.origin.x - (GZ_EMOJI_LENS_WIDTH - anchorView.frame.size.width)/2));
-        make.top.equalTo(@(anchorView.frame.origin.y - GZ_EMOJI_LENS_HEIGHT - 5));
+        make.leading.equalTo(@(pointInContentView.x/[UIScreen mainScreen].scale - (GZ_EMOJI_LENS_WIDTH - anchorView.frame.size.width)/2));
+        make.top.equalTo(@(pointInContentView.y/[UIScreen mainScreen].scale - GZ_EMOJI_LENS_HEIGHT - 5));
     }];
 }
 
@@ -285,7 +288,7 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
     // Control of sticker lens
     if (isOn) {
         self.popView = [GZStickerLens new];
-        [self.superview.superview.superview addSubview:self.popView];
+        [self.superview.superview addSubview:self.popView];
     } else {
         [self.popView removeFromSuperview];
         [self.pressingView setSelected:NO];

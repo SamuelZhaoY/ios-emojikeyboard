@@ -23,7 +23,7 @@ const float GZ_EMO_ICON_SIZE = 35;
 
 @property(assign, nonatomic)BOOL needLayout;
 @property(strong, nonatomic)GZStickerPackagePanel* packageSelector;
-@property(strong, nonatomic)GZStickerContentScrollView* contentScroller;
+@property(strong, nonatomic)GZStickerContentScrollView* contentScrollView;
 @property(strong, nonatomic)NSMutableArray* stickerList;
 @property(strong, nonatomic)UIPageControl* pageControl;
 @property(strong, nonatomic)UIButton* returnAccessoryBtn;
@@ -38,17 +38,17 @@ const float GZ_EMO_ICON_SIZE = 35;
     self.stickerList = [NSMutableArray new];
     
     self.packageSelector = [GZStickerPackagePanel new];
-    self.contentScroller = [[GZStickerContentScrollView alloc] initWithFrame:CGRectMake(0, 0, [GZCommonUtils getMainScreenWidth], GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT - 15)
+    self.contentScrollView = [[GZStickerContentScrollView alloc] initWithFrame:CGRectMake(0, 0, [GZCommonUtils getMainScreenWidth], GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT - 15)
                                                          collectionViewLayout:[GZStickerPanelLayoutStrategy new]];
     self.pageControl = [UIPageControl new];
-    self.contentScroller.pageControl = self.pageControl;
-    self.contentScroller.scrollContentDelegate = (id<GZStickerContentScrollViewControl>)self.packageSelector;
-    self.packageSelector.controlDelegate = (id<GZStickerPackagePanelControl>)self.contentScroller;
+    self.contentScrollView.pageControl = self.pageControl;
+    self.contentScrollView.scrollContentDelegate = (id<GZStickerContentScrollViewControl>)self.packageSelector;
+    self.packageSelector.controlDelegate = (id<GZStickerPackagePanelControl>)self.contentScrollView;
     self.returnAccessoryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.userInteractionEnabled = YES;
 
     [self addSubview:self.packageSelector];
-    [self addSubview:self.contentScroller];
+    [self addSubview:self.contentScrollView];
     [self addSubview:self.pageControl];
     [self addSubview:self.returnAccessoryBtn];
     
@@ -63,7 +63,7 @@ const float GZ_EMO_ICON_SIZE = 35;
         make.width.equalTo(self.mas_width).offset(-GZ_EMO_PACK_ITEM_WIDTH * 1.2);
     }];
     
-    [self.contentScroller mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.packageSelector.mas_top).offset(-15);
         make.top.equalTo(self.mas_top);
         make.leading.equalTo(self.mas_leading);
@@ -108,6 +108,8 @@ const float GZ_EMO_ICON_SIZE = 35;
     // Update package panel display
     [self.packageSelector updateStickerList:self.stickerList];
     
+    [self checkLayout];
+    
     return self;
 }
 
@@ -123,50 +125,18 @@ const float GZ_EMO_ICON_SIZE = 35;
     if (self.needLayout) {
         self.needLayout = NO;
         
-        [self.contentScroller updateContentPanel:self.stickerList];
+        [self.contentScrollView updateContentPanel:self.stickerList];
     }
 }
 
 - (void)setAssociatedInput:(GZExpandableInputView *)associatedInput
 {
     _associatedInput = associatedInput;
-    [self.contentScroller configAccessoryInput:associatedInput];
+    [self.contentScrollView configAccessoryInput:associatedInput];
 }
 
 - (void)sendInput:(UIView*)responder
 {
 }
-
-- (void)toggleSendKeyAccessory:(BOOL)isOn
-{
-    float initialValue = 0;
-    float destinyValue = 0;
-    if (isOn) {
-        initialValue = [GZCommonUtils getMainScreenWidth];
-        destinyValue = [GZCommonUtils getMainScreenWidth] - GZ_EMO_PACK_ITEM_WIDTH * 1.2;
-    } else {
-        destinyValue = [GZCommonUtils getMainScreenWidth];
-        initialValue = [GZCommonUtils getMainScreenWidth] - GZ_EMO_PACK_ITEM_WIDTH * 1.2;
-    }
-    
-    self.returnAccessoryBtn.translatesAutoresizingMaskIntoConstraints = YES;
-    self.returnAccessoryBtn.frame = CGRectMake(initialValue,
-                                               self.returnAccessoryBtn.frame.origin.y,
-                                               self.returnAccessoryBtn.frame.size.width,
-                                               self.returnAccessoryBtn.frame.size.height);
-    
-    [UIView animateWithDuration:0.2
-                          delay:0
-                        options: UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         self.returnAccessoryBtn.frame = CGRectMake(destinyValue,
-                                                                    self.returnAccessoryBtn.frame.origin.y,
-                                                                    self.returnAccessoryBtn.frame.size.width,
-                                                                    self.returnAccessoryBtn.frame.size.height);                     }
-                     completion:^(BOOL finished){
-                         self.returnAccessoryBtn.translatesAutoresizingMaskIntoConstraints = NO;
-                     }];
-}
-
 
 @end
