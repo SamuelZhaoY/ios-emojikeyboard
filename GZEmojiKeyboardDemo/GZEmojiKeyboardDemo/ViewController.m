@@ -10,6 +10,9 @@
 #import <Masonry/Masonry.h>
 #import <GZEmojiKeyboard/GZStickerPanelControl.h>
 
+/**
+ *  TODO: 1. support screen roration, ipad 2. support gif
+ */
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *emojiInput;
