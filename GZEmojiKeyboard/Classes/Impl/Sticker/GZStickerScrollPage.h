@@ -11,6 +11,7 @@
 @class GZStickerPackage;
 @interface GZStickerScrollPage : UICollectionViewCell
 @property(weak, nonatomic)UITextField* accessoryInput;
+
 - (void)updateStickerPackage:(GZStickerPackage*)stickerPackage atIndex:(int)index;
 
 @end

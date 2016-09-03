@@ -39,7 +39,7 @@
 - (void)setSelected:(BOOL)isSelected
 {
     if (isSelected) {
-        self.backgroundColor = [UIColor colorWithRGB:GZUIKitFontGrey4];
+        self.backgroundColor = [UIColor colorWithRGB:0xBBBBBB];
     } else {
         self.backgroundColor = [UIColor clearColor];
     }
@@ -71,8 +71,8 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
     
     self.clipsToBounds = YES;
     self.layer.cornerRadius = 4.0;
-    self.layer.borderColor = [UIColor colorWithRGB:GZUIKitFontGrey3].CGColor;
-    self.backgroundColor = [UIColor colorWithRGB:GZUIKitUIGrey11];
+    self.layer.borderColor = [UIColor colorWithRGB:0x9B9B9B].CGColor;
+    self.backgroundColor = [UIColor colorWithRGB:0xF4F4F4];
     self.layer.borderWidth = 1.0;
     
     self.nameLabel = [UILabel new];
@@ -210,7 +210,8 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
         
         // Config delete button
         if (stickerPackage.type == GZ_TYPE_EMOJI) {
-            UILabel* deleteButton = [GZUIKitIconFontHelper labelWithIdentifier:@"e615" tintColor:[UIColor grayColor] fontSize:18.0];
+            UILabel* deleteButton = [UILabel new];
+            deleteButton.font = [UIFont systemFontOfSize:18.0];
             deleteButton.text = @"X";
             deleteButton.textAlignment = NSTextAlignmentCenter;
             deleteButton.userInteractionEnabled = YES;

@@ -101,7 +101,7 @@
     }
 
     [self.currentHighlightView setBackgroundColor:[UIColor clearColor]];
-    [stickerTab setBackgroundColor:[UIColor colorWithRGB:GZUIKitFontGrey4]];
+    [stickerTab setBackgroundColor:[UIColor colorWithRGB:0xBBBBBB]];
     self.currentHighlightView = stickerTab;
     
     // Scroll rect to visible

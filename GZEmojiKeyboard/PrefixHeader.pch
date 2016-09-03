@@ -13,8 +13,6 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import <Masonry/Masonry.h>
 #import "UIColor+GZEmoji.h"
-#import "GZUIKitIconFontHelper.h"
-#import "UIImage+GZEmoji.h"
 
 #define GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT 178.0f
 
