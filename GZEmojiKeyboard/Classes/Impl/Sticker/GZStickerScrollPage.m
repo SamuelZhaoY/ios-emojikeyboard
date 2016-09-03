@@ -144,7 +144,6 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
 @end
 
 
-
 @interface GZStickerScrollPage()
 
 @property(strong, nonatomic)UIView* pageContentView;
@@ -212,6 +211,7 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
         // Config delete button
         if (stickerPackage.type == GZ_TYPE_EMOJI) {
             UILabel* deleteButton = [GZUIKitIconFontHelper labelWithIdentifier:@"e615" tintColor:[UIColor grayColor] fontSize:18.0];
+            deleteButton.text = @"X";
             deleteButton.textAlignment = NSTextAlignmentCenter;
             deleteButton.userInteractionEnabled = YES;
             [self.pageContentView addSubview:deleteButton];

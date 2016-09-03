@@ -12,6 +12,8 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *emojiInput;
+
 @end
 
 @implementation ViewController
@@ -19,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // config emoji& sticker control
     GZStickerPanelControl* _emoControl = [GZStickerPanelControl new];
     [self.view addSubview:_emoControl];
     [_emoControl mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -29,8 +30,21 @@
         make.height.equalTo([NSNumber numberWithFloat:178.0f]);
     }];
     
-    [_emoControl setBackgroundColor:[UIColor grayColor]];
+    [_emoControl setBackgroundColor:[UIColor colorWithRed:(float)0xEE/0xFF
+                                                    green:(float)0xEE/0xFF
+                                                     blue:(float)0xEE/0xFF
+                                                    alpha:1.0]];
+    
+    self.view.userInteractionEnabled = YES;
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                            action:@selector(dismissKeyboard)]];
     
 }
+
+- (void)dismissKeyboard
+{
+    [self.emojiInput resignFirstResponder];
+}
+
 
 @end
