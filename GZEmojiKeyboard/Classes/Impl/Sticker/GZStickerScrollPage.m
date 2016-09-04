@@ -224,7 +224,7 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
         [deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
             make.height.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
-            make.top.equalTo([NSNumber numberWithFloat:(verticalSpacing + (verticalSpacing + GZ_EMO_ICON_SIZE)* 2)]);
+            make.top.equalTo([NSNumber numberWithFloat:(verticalSpacing + (verticalSpacing + GZ_EMO_ICON_SIZE)* ([stickerPackage checkRowCount] - 1))]);
             make.leading.equalTo([NSNumber numberWithFloat:(horizontalSpacing + (coloumnPerpage - 1) * (GZ_EMO_ICON_SIZE + horizontalSpacing))]);
         }];
         [deleteButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self

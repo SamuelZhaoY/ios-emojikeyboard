@@ -14,6 +14,6 @@
 #import <Masonry/Masonry.h>
 #import "UIColor+GZEmoji.h"
 
-#define GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT 178.0f
+#define GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT 220.0f
 
 #endif /* PrefixHeader_pch */

@@ -32,7 +32,7 @@
         make.leading.equalTo(self.view.mas_leading);
         make.bottom.equalTo(self.view.mas_bottom);
         make.width.equalTo(self.view.mas_width);
-        make.height.equalTo([NSNumber numberWithFloat:178.0f]);
+        make.height.equalTo([NSNumber numberWithFloat:220.0f]);
     }];
     
     self.view.userInteractionEnabled = YES;

@@ -127,7 +127,7 @@
 - (int)checkRowCount
 {
     if (self.type == GZ_TYPE_EMOJI) {
-        return 3;
+        return 4;
     } else {
         return 2;
     }
