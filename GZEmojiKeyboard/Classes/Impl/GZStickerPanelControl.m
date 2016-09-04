@@ -21,11 +21,9 @@ const float GZ_EMO_ICON_SIZE = 35;
 
 @interface GZStickerPanelControl()<UIScrollViewDelegate>
 
-@property(assign, nonatomic)BOOL needLayout;
 @property(strong, nonatomic)GZStickerPackagePanel* packageSelector;
 @property(strong, nonatomic)GZStickerContentScrollView* contentScrollView;
-@property(strong, nonatomic)NSMutableArray* stickerList;
-@property(strong, nonatomic)UIPageControl* pageControl;
+@property(strong, nonatomic)NSArray* stickerList;
 
 @end
 
@@ -34,27 +32,42 @@ const float GZ_EMO_ICON_SIZE = 35;
 - (instancetype)init
 {
     self = [super init];
-    self.stickerList = [NSMutableArray new];
+    [self setBackgroundColor:[UIColor colorWithRGB:0xEEEEEE]];
     
+    // Create Component
     self.packageSelector = [GZStickerPackagePanel new];
-    self.contentScrollView = [[GZStickerContentScrollView alloc] initWithFrame:CGRectMake(0, 0, [GZCommonUtils getMainScreenWidth], GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT - 15)
+    self.contentScrollView = [[GZStickerContentScrollView alloc] initWithFrame:CGRectMake(0,
+                                                                                          0,
+                                                                                          [GZCommonUtils getMainScreenWidth],
+                                                                                          GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT - 15)
                                                          collectionViewLayout:[GZStickerPanelLayoutStrategy new]];
-    self.pageControl = [UIPageControl new];
-    self.contentScrollView.pageControl = self.pageControl;
+    UIPageControl* pageControl = [UIPageControl new];
+    pageControl.hidesForSinglePage = YES;
+    pageControl.enabled = NO;
+    pageControl.pageIndicatorTintColor = [UIColor colorWithRGB:0xDDDDDD];
+    pageControl.currentPageIndicatorTintColor = [UIColor colorWithRGB:0x9B9B9B];
+    
+    self.contentScrollView.pageControl = pageControl;
     self.contentScrollView.scrollContentDelegate = (id<GZStickerContentScrollViewControl>)self.packageSelector;
     self.packageSelector.controlDelegate = (id<GZStickerPackagePanelControl>)self.contentScrollView;
     self.userInteractionEnabled = YES;
-
+    
+    // Update Content
+    self.stickerList = [GZStickerPackage loadLocalPackages];
+    [self.packageSelector updateStickerList:self.stickerList];
+    [self.contentScrollView updateContentPanel:self.stickerList];
+    
+    // Update Layout
     [self addSubview:self.packageSelector];
     [self addSubview:self.contentScrollView];
-    [self addSubview:self.pageControl];
+    [self addSubview:pageControl];
     
     [self.packageSelector setBackgroundColor:[UIColor colorWithRGB:0xF4F4F4]];
     [self.packageSelector mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo([NSNumber numberWithInteger:GZ_EMO_PACK_BAR_HEIGHT]);
         make.bottom.equalTo(self.mas_bottom);
         make.leading.equalTo(self.mas_leading);
-        make.width.equalTo(self.mas_width).offset(-GZ_EMO_PACK_ITEM_WIDTH * 1.2);
+        make.width.equalTo(self.mas_width);
     }];
     
     [self.contentScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -64,42 +77,18 @@ const float GZ_EMO_ICON_SIZE = 35;
         make.width.equalTo(self.mas_width);
     }];
     
-    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+    [pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.mas_width);
         make.leading.equalTo(self.mas_leading);
         make.height.equalTo(@10);
         make.bottom.equalTo(self.packageSelector.mas_top).offset(-2);
     }];
     
-    self.pageControl.hidesForSinglePage = YES;
-    self.pageControl.enabled = NO;
-    self.pageControl.pageIndicatorTintColor = [UIColor colorWithRGB:0xDDDDDD];
-    self.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRGB:0x9B9B9B];
     
-    
-    self.needLayout = YES;
-    self.stickerList = [[GZStickerPackage loadLocalPackages] mutableCopy];
-    
-    [self.packageSelector updateStickerList:self.stickerList];
-    
-    [self checkLayout];
-    
+    // Initialization Done
     return self;
 }
 
--(void)setNeedsLayout
-{
-    self.needLayout = YES;
-    [super setNeedsLayout];
-}
-
-- (void)checkLayout
-{
-    if (self.needLayout) {
-        self.needLayout = NO;
-        [self.contentScrollView updateContentPanel:self.stickerList];
-    }
-}
 
 - (void)setAssociatedInput:(UITextField *)associatedInput
 {

@@ -16,6 +16,4 @@ FOUNDATION_EXPORT const float GZ_EMO_ICON_SIZE;
 
 @property(nonatomic, weak) UITextField* associatedInput;
 
-- (void)checkLayout;
-
 @end

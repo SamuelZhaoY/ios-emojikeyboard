@@ -10,8 +10,8 @@
 
 @protocol GZStickerContentScrollViewControl <NSObject>
 
+@required
 - (void)onScrolledToNewPackage:(int)index;
-
 - (void)adjustPanelPositionAtIndex:(int)index;
 
 @end
@@ -22,7 +22,6 @@
 @property(weak, nonatomic)id<GZStickerContentScrollViewControl> scrollContentDelegate;
 
 - (void)configAccessoryInput:(UITextField*)input;
-
 - (void)updateContentPanel:(NSArray*)stickerPackages;
 
 @end

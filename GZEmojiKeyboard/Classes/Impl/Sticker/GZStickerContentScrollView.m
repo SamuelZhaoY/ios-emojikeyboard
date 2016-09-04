@@ -35,6 +35,7 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
 @end
 
 @implementation GZStickerPage
+
 @end
 
 @implementation GZStickerContentScrollView
@@ -49,8 +50,8 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
     self.showsVerticalScrollIndicator = NO;
     self.dataSource = self;
     self.delegate = self;
-    self.pageObjects = [NSMutableArray new];
     [self registerClass:[GZStickerScrollPage class] forCellWithReuseIdentifier:PAGE_INENTIFIER];
+    self.pageObjects = [NSMutableArray new];
 
     return self;
 }
@@ -64,24 +65,8 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
 {
     [self.pageObjects removeAllObjects];
     
+    // Update Data
     self.stickerPackages = stickerPackages;
-    self.pageControl.currentPage = 0;
-    
-    // Calculate total page number 
-    int pageNumber = 0;
-    for (GZStickerPackage* stickerPackage in self.stickerPackages) {
-        pageNumber += [stickerPackage checkPageCount];
-    }
-    
-    // Check about the overall content width
-    self.contentSize = CGSizeMake(pageNumber * [GZCommonUtils getMainScreenWidth], GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT - GZ_EMO_PACK_BAR_HEIGHT - 15);
-    ((GZStickerPanelLayoutStrategy*)self.collectionViewLayout).numberOfPage = pageNumber;
-    
-    // Initialize page count
-    GZStickerPackage* emojiPack = [GZStickerPackage defaultStickerPackage];
-    self.pageControl.numberOfPages = [emojiPack checkPageCount];
-    
-    // Load paging object, calculate total page count
     for (GZStickerPackage* stickerPackage in self.stickerPackages) {
         for (int pageIndex = 0; pageIndex < [stickerPackage checkPageCount]; pageIndex++) {
             GZStickerPage* pageInfo = [GZStickerPage new];
@@ -91,40 +76,42 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
             [self.pageObjects addObject:pageInfo];
         }
     }
-    
+
+    // Update Layout
+    [self tapPackagePaneAtIndex:0];
+    [((GZStickerPanelLayoutStrategy*)self.collectionViewLayout) updatePageContent:stickerPackages];
+
     [self reloadData];
 }
 
-# pragma mark - page control status update
+# pragma mark - Page Control Update
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
     // Switch the indicator when more than 50% of the previous/next page is visible
     CGFloat pageWidth = self.frame.size.width;
-    int page = floor((self.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    
-    // Check about page tag
+    int page = floor((self.contentOffset.x - pageWidth/2) / pageWidth) + 1;
     if (page >= self.pageObjects.count) {
         return;
     }
     
     GZStickerPage* pageObject = [self.pageObjects objectAtIndex:page];
-    self.pageControl.currentPage = pageObject.pageIndex;
-    self.pageControl.numberOfPages = pageObject.pageCount;
     
-    // Notify change of delegate event
+    [self updatePageControl:pageObject.pageIndex
+             totalPageCount:pageObject.pageCount];
+    
     if (self.currentPackage != pageObject.packageInfo) {
         [self.scrollContentDelegate onScrolledToNewPackage:(int)[self.stickerPackages indexOfObject:pageObject.packageInfo]];
         self.currentPackage = pageObject.packageInfo;
     }
     
-    // Adjust panel position
     [self.scrollContentDelegate adjustPanelPositionAtIndex:(int)[self.stickerPackages indexOfObject:pageObject.packageInfo]];
 }
 
 #pragma mark - UICollectionViewDataSource
 
-// Check about total page numbers
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)view
+     numberOfItemsInSection:(NSInteger)section
+{
     int pageNumber = 0;
     for (GZStickerPackage* stickerPackage in self.stickerPackages) {
         pageNumber += [stickerPackage checkPageCount];
@@ -132,32 +119,39 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
     return pageNumber;
 }
 
-// Check about number of sections
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return 1;
 }
 
-// Check about cell layout
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     GZStickerScrollPage *cell = (GZStickerScrollPage *)[cv dequeueReusableCellWithReuseIdentifier:PAGE_INENTIFIER forIndexPath:indexPath];
-    // Index raw indicates the page number
+    
     GZStickerPage* currentPage = [self.pageObjects objectAtIndex:indexPath.row];
     cell.accessoryInput = self.accessoryInput;
     [cell updateStickerPackage:currentPage.packageInfo atIndex:currentPage.pageIndex];
     return cell;
 }
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+-(CGSize)collectionView:(UICollectionView *)collectionView
+                 layout:(UICollectionViewLayout *)collectionViewLayout
+ sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     return self.frame.size;
 }
 
-#pragma mark - collection view cell paddings
+#pragma mark - Cell Padding
 
-- (UIEdgeInsets)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(UICollectionView*)collectionView
+                        layout:(UICollectionViewLayout *)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section
+{
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
-#pragma mark - handling tapping events
+#pragma mark - Panel Tapping
 
 - (void)tapPackagePaneAtIndex:(int)packageIndex
 {
@@ -166,7 +160,7 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
     }
     
     float scrollX = 0;
-    // Scroll to page, calc offset
+    
     for (int index = 0; index < packageIndex; index++) {
         GZStickerPackage* package = [self.stickerPackages objectAtIndex:index];
         scrollX += [package checkPageCount]* [GZCommonUtils getMainScreenWidth];
@@ -175,7 +169,15 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
     self.currentPackage = [self.stickerPackages objectAtIndex:packageIndex];
     [self setContentOffset:CGPointMake(scrollX, 0) animated:NO];
     self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = [self.currentPackage checkPageCount];
+    [self updatePageControl:0 totalPageCount:[self.currentPackage checkPageCount]];
+}
+
+#pragma mark - Page Control
+
+- (void)updatePageControl:(int)index totalPageCount:(int)totalPageCount
+{
+    self.pageControl.currentPage = index;
+    self.pageControl.numberOfPages = totalPageCount;
 }
 
 @end

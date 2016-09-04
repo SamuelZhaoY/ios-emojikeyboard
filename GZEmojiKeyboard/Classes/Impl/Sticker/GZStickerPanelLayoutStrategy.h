@@ -10,6 +10,6 @@
 
 @interface GZStickerPanelLayoutStrategy : UICollectionViewFlowLayout
 
-@property(assign, nonatomic)int numberOfPage;
+- (void)updatePageContent:(NSArray*)packageList;
 
 @end

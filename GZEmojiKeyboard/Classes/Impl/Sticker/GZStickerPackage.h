@@ -10,10 +10,9 @@
 
 typedef NS_ENUM(NSUInteger, GZ_STICKER_TYPE)
 {
-    // package is set of emoji
+    // Package is set of emoji
     GZ_TYPE_EMOJI = 0,
-    
-    // package is set of stickers
+    // Package is set of stickers
     GZ_TYPE_STICKER,
 };
 

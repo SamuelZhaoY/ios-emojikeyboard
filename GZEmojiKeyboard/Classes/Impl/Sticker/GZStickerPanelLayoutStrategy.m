@@ -9,6 +9,13 @@
 #import "GZStickerPanelLayoutStrategy.h"
 #import "GZStickerPanelControl.h"
 #import "GZCommonUtils.h"
+#import "GZStickerPackage.h"
+
+@interface  GZStickerPanelLayoutStrategy()
+
+@property(assign, nonatomic)int numberOfPage;
+
+@end
 
 @implementation GZStickerPanelLayoutStrategy
 
@@ -20,6 +27,16 @@
     self.minimumInteritemSpacing = 0.0;
     self.minimumLineSpacing = 0.0;
     return self;
+}
+
+- (void)updatePageContent:(NSArray*)packageList
+{
+    int numberOfPage = 0;
+    for (GZStickerPackage* stickerPackage in packageList) {
+        numberOfPage += [stickerPackage checkPageCount];
+    }
+    
+    self.numberOfPage = numberOfPage;
 }
 
 - (CGSize)collectionViewContentSize {
