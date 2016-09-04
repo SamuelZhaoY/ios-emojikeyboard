@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, GZ_STICKER_TYPE)
 
 + (NSArray*)rawEmoji;
 
-+ (GZStickerPackage*)defaultStickerPackage;
++ (GZStickerPackage*)defaultEmojiPackage;
 
 + (NSArray*)loadLocalPackages;
 
@@ -38,6 +38,8 @@ typedef NS_ENUM(NSUInteger, GZ_STICKER_TYPE)
 - (float)checkHorizontalSpacing;
 
 - (float)checkVerticalSpacing;
+
+- (float)checkItemSize;
 
 - (NSArray*)checkItemsAtIndexedPage:(int)pageIndex;
 

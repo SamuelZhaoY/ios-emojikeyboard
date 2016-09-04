@@ -18,6 +18,7 @@
 const float GZ_EMO_PACK_BAR_HEIGHT = 40;
 const float GZ_EMO_PACK_ITEM_WIDTH = 45;
 const float GZ_EMO_ICON_SIZE = 35;
+const float GZ_EMO_STICKER_SIZE = 70;
 
 
 @interface GZStickerPanelControl()<UIScrollViewDelegate>

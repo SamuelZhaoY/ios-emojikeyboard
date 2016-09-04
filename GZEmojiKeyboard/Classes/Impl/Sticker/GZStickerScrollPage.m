@@ -10,6 +10,7 @@
 #import "GZStickerPackage.h"
 #import "GZStickerPanelControl.h"
 #import "GZCommonUtils.h"
+#import "UIImage+animatedGIF.h"
 
 @interface GZEmojiIcon : UILabel
 
@@ -27,13 +28,34 @@
 {
     self = [super init];
     self.item = itemInfo;
-    self.text = itemInfo.resource;
     self.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24.0];
     self.userInteractionEnabled = YES;
     self.textAlignment = NSTextAlignmentCenter;
     self.clipsToBounds = YES;
     self.layer.cornerRadius = 4.0f;
+    [self checkContent];
     return self;
+}
+
+- (void)checkContent
+{
+    if (self.item.stickerType == GZ_TYPE_EMOJI) {
+        self.text = self.item.resource;
+    } else {
+        UIImageView* stickerCanvass = [UIImageView new];
+        stickerCanvass.layer.cornerRadius = self.layer.cornerRadius;
+        stickerCanvass.contentMode = UIViewContentModeScaleToFill;
+
+        [self addSubview:stickerCanvass];
+        [stickerCanvass mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(self.mas_width);
+            make.height.equalTo(self.mas_height);
+            make.centerX.equalTo(self.mas_centerX);
+            make.centerY.equalTo(self.mas_centerY);
+        }];
+        
+        [stickerCanvass setImage:[UIImage imageWithContentsOfFile:self.item.resource]];
+    }
 }
 
 - (void)setSelected:(BOOL)isSelected
@@ -49,12 +71,16 @@
 
 const float GZ_EMOJI_LENS_HEIGHT = 55;
 const float GZ_EMOJI_LENS_WIDTH = 60;
+const float GZ_STICKER_LENS_WIDTH = 150;
+const float GZ_STICKER_LENS_HEIGHT = 160;
+
 
 @interface GZStickerLens : UIView
 
 @property(strong, nonatomic)GZStickerItem* stickerItem;
 @property(strong, nonatomic)UILabel* nameLabel;
 @property(strong, nonatomic)UILabel* emojiLabel;
+@property(strong, nonatomic)UIImageView* stickerDemo;
 @property(assign, nonatomic)GZ_STICKER_TYPE stickerType;
 
 - (void)updateStickerInfo:(GZStickerItem*) item;
@@ -84,46 +110,58 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
     
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
     self.emojiLabel.textAlignment = NSTextAlignmentCenter;
+    self.stickerDemo = [UIImageView new];
     
     [self addSubview:self.nameLabel];
     [self addSubview:self.emojiLabel];
+    [self addSubview:self.stickerDemo];
+    
     return self;
 }
 
-- (void)updateStickerInfo:(GZStickerItem*) item
+- (void)updateStickerInfo:(GZStickerItem*)item
 {
     self.stickerItem = item;
-    if (self.stickerType != self.stickerItem.stickerType) {
-        // When type not match with current one, update layout
-        self.stickerType = item.stickerType;
-        if (self.stickerItem.stickerType == GZ_TYPE_EMOJI) {
-            
-            [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.width.equalTo(@(GZ_EMOJI_LENS_WIDTH));
-                make.height.equalTo(@(GZ_EMOJI_LENS_HEIGHT));
-                make.centerX.equalTo(@(0));
-                make.bottom.equalTo(@(0));
-            }];
-            
-            [self.emojiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.leading.equalTo(self.emojiLabel.superview.mas_leading).offset(5);
-                make.trailing.equalTo(self.emojiLabel.superview.mas_trailing).offset(-5);
-                make.top.equalTo(self.emojiLabel.superview.mas_top).offset(5);
-                make.bottom.equalTo(self.emojiLabel.superview.mas_bottom).offset(-20);
-            }];
-            
-            [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.leading.equalTo(self.nameLabel.superview.mas_leading);
-                make.trailing.equalTo(self.nameLabel.superview.mas_trailing);
-                make.bottom.equalTo(self.nameLabel.superview.mas_bottom).offset(-5);
-                make.height.equalTo(@(12));
-            }];
-            
-        } else if (self.stickerItem.stickerType == GZ_TYPE_STICKER) {
-            
-        }
-    }
+    // When type not match with current one, update layout
+    self.stickerType = item.stickerType;
     
+    
+    float lensWidth = item.stickerType==GZ_TYPE_EMOJI?GZ_EMOJI_LENS_WIDTH:GZ_STICKER_LENS_WIDTH;
+    float lensHeight= item.stickerType==GZ_TYPE_EMOJI?GZ_EMOJI_LENS_HEIGHT:GZ_STICKER_LENS_HEIGHT;
+    
+    [self.stickerDemo setHidden:item.stickerType==GZ_TYPE_EMOJI];
+    [self.emojiLabel setHidden:item.stickerType!=GZ_TYPE_EMOJI];
+    
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@(lensWidth));
+        make.height.equalTo(@(lensHeight));
+        make.centerX.equalTo(@(0));
+        make.bottom.equalTo(@(0));
+    }];
+    
+    [self.emojiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.emojiLabel.superview.mas_leading).offset(5);
+        make.trailing.equalTo(self.emojiLabel.superview.mas_trailing).offset(-5);
+        make.top.equalTo(self.emojiLabel.superview.mas_top).offset(5);
+        make.bottom.equalTo(self.emojiLabel.superview.mas_bottom).offset(-20);
+    }];
+    
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.nameLabel.superview.mas_leading);
+        make.trailing.equalTo(self.nameLabel.superview.mas_trailing);
+        make.bottom.equalTo(self.nameLabel.superview.mas_bottom).offset(-5);
+        make.height.equalTo(@(12));
+    }];
+  
+    [self.stickerDemo mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.emojiLabel.superview.mas_leading).offset(5);
+        make.trailing.equalTo(self.emojiLabel.superview.mas_trailing).offset(-5);
+        make.top.equalTo(self.emojiLabel.superview.mas_top).offset(5);
+        make.bottom.equalTo(self.emojiLabel.superview.mas_bottom).offset(-20);
+    }];
+
+    
+    self.stickerDemo.image = [UIImage animatedImageWithAnimatedGIFURL:[NSURL fileURLWithPath:item.resource]];
     self.emojiLabel.text = item.resource;
     self.nameLabel.text = item.name;
 }
@@ -132,11 +170,14 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
 {
     CGPoint pointInContentView = [anchorView convertPoint:anchorView.frame.origin toView:anchorView.superview.superview.superview.superview];
     
+    float lensWidth = self.stickerItem.stickerType==GZ_TYPE_EMOJI?GZ_EMOJI_LENS_WIDTH:GZ_STICKER_LENS_WIDTH;
+    float lensHeight= self.stickerItem.stickerType==GZ_TYPE_EMOJI?GZ_EMOJI_LENS_HEIGHT:GZ_STICKER_LENS_HEIGHT;
+    
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(@(GZ_EMOJI_LENS_WIDTH));
-        make.height.equalTo(@(GZ_EMOJI_LENS_HEIGHT));
-        make.leading.equalTo(@(pointInContentView.x/[UIScreen mainScreen].scale - (GZ_EMOJI_LENS_WIDTH - anchorView.frame.size.width)/2));
-        make.top.equalTo(@(pointInContentView.y/[UIScreen mainScreen].scale - GZ_EMOJI_LENS_HEIGHT - 5));
+        make.width.equalTo(@(lensWidth));
+        make.height.equalTo(@(lensHeight));
+        make.leading.equalTo(@(pointInContentView.x/[UIScreen mainScreen].scale - (lensWidth - anchorView.frame.size.width)/2));
+        make.top.equalTo(@(pointInContentView.y/[UIScreen mainScreen].scale - lensHeight - 5));
     }];
 }
 
@@ -193,23 +234,27 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
     int coloumnPerpage =  [stickerPackage checkColumnCount];
     float horizontalSpacing = [stickerPackage checkHorizontalSpacing];
     float verticalSpacing = [stickerPackage checkVerticalSpacing];
+    float itemSize = [stickerPackage checkItemSize];
     
-    for (GZStickerItem* emojiItem in stickerIcons) {
-        int pageIndex = (int)[stickerIcons indexOfObject:emojiItem];
+    for (GZStickerItem* stickerItem in stickerIcons) {
+        int pageIndex = (int)[stickerIcons indexOfObject:stickerItem];
         int rowPosition = (pageIndex) / coloumnPerpage;
         int coloumnPosition = (pageIndex) % coloumnPerpage;
         
-        GZEmojiIcon* emojiLabel = [[GZEmojiIcon alloc] initWithStickerInfo:emojiItem];
-        emojiLabel.tag = [stickerPackage.contentArray indexOfObject:emojiItem];
-        [emojiLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
+        
+        GZEmojiIcon* stickerLabel = [[GZEmojiIcon alloc] initWithStickerInfo:stickerItem];
+        stickerLabel.tag = [stickerPackage.contentArray indexOfObject:stickerItem];
+        [stickerLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(simpleLabelTapped:)]];
         
-        [self.pageContentView addSubview:emojiLabel];
-        [emojiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
-            make.height.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
-            make.leading.equalTo([NSNumber numberWithFloat:(horizontalSpacing + coloumnPosition * (GZ_EMO_ICON_SIZE + horizontalSpacing))]);
-            make.top.equalTo([NSNumber numberWithFloat:(verticalSpacing + (verticalSpacing + GZ_EMO_ICON_SIZE)* rowPosition)]);
+        [self.pageContentView addSubview:stickerLabel];
+        
+        
+        [stickerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo([NSNumber numberWithFloat:itemSize]);
+            make.height.equalTo([NSNumber numberWithFloat:itemSize]);
+            make.leading.equalTo([NSNumber numberWithFloat:(horizontalSpacing + coloumnPosition * (itemSize + horizontalSpacing))]);
+            make.top.equalTo([NSNumber numberWithFloat:(verticalSpacing + (verticalSpacing + itemSize)* rowPosition)]);
         }];
     }
     
@@ -222,10 +267,10 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
         [self.pageContentView addSubview:deleteButton];
         
         [deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
-            make.height.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
-            make.top.equalTo([NSNumber numberWithFloat:(verticalSpacing + (verticalSpacing + GZ_EMO_ICON_SIZE)* ([stickerPackage checkRowCount] - 1))]);
-            make.leading.equalTo([NSNumber numberWithFloat:(horizontalSpacing + (coloumnPerpage - 1) * (GZ_EMO_ICON_SIZE + horizontalSpacing))]);
+            make.width.equalTo([NSNumber numberWithFloat:itemSize]);
+            make.height.equalTo([NSNumber numberWithFloat:itemSize]);
+            make.top.equalTo([NSNumber numberWithFloat:(verticalSpacing + (verticalSpacing + itemSize)* ([stickerPackage checkRowCount] - 1))]);
+            make.leading.equalTo([NSNumber numberWithFloat:(horizontalSpacing + (coloumnPerpage - 1) * (itemSize + horizontalSpacing))]);
         }];
         [deleteButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                    action:@selector(deleteInputChar)]];
@@ -236,7 +281,7 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
 
 - (void)simpleLabelTapped:(UIGestureRecognizer*)recognizer
 {
-    GZStickerPackage* emojiPack = [GZStickerPackage defaultStickerPackage];
+    GZStickerPackage* emojiPack = [GZStickerPackage defaultEmojiPackage];
     if ([emojiPack.contentArray count] > (recognizer.view).tag) {
         GZStickerItem* stickerItem = [emojiPack.contentArray objectAtIndex:recognizer.view.tag];
         if (stickerItem.stickerType == GZ_TYPE_EMOJI) {

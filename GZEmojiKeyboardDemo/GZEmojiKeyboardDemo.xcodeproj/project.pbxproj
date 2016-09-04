@@ -16,6 +16,7 @@
 		7F2EB6051D7978A700DA2C9D /* GZEmojiKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2EB5FB1D79761B00DA2C9D /* GZEmojiKeyboard.framework */; };
 		7F2EB6061D7978A700DA2C9D /* GZEmojiKeyboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2EB5FB1D79761B00DA2C9D /* GZEmojiKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7F2EB60C1D797F9600DA2C9D /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2EB60B1D797F9600DA2C9D /* Masonry.framework */; };
+		7FDEC9D51D7C23AD000C7945 /* Sticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7FDEC9D41D7C23AD000C7945 /* Sticker.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		7F2EB5181D7315AC00DA2C9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F2EB5F61D79761B00DA2C9D /* GZEmojiKeyboard.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GZEmojiKeyboard.xcodeproj; path = ../GZEmojiKeyboard.xcodeproj; sourceTree = "<group>"; };
 		7F2EB60B1D797F9600DA2C9D /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = ../Frameworks/Masonry.framework; sourceTree = "<group>"; };
+		7FDEC9D41D7C23AD000C7945 /* Sticker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Sticker.bundle; path = GZEmojiKeyboardDemo/Sticker.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		7F2EB4FB1D7315AC00DA2C9D = {
 			isa = PBXGroup;
 			children = (
+				7FDEC9D41D7C23AD000C7945 /* Sticker.bundle */,
 				7F2EB60B1D797F9600DA2C9D /* Masonry.framework */,
 				7F2EB5F61D79761B00DA2C9D /* GZEmojiKeyboard.xcodeproj */,
 				7F2EB5061D7315AC00DA2C9D /* GZEmojiKeyboardDemo */,
@@ -203,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FDEC9D51D7C23AD000C7945 /* Sticker.bundle in Resources */,
 				7F2EB5171D7315AC00DA2C9D /* LaunchScreen.storyboard in Resources */,
 				7F2EB5141D7315AC00DA2C9D /* Assets.xcassets in Resources */,
 				7F2EB5121D7315AC00DA2C9D /* Main.storyboard in Resources */,

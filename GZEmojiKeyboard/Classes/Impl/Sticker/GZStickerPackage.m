@@ -13,7 +13,7 @@
 
 @implementation GZStickerPackage
 
-+ (GZStickerPackage*)defaultStickerPackage
++ (GZStickerPackage*)defaultEmojiPackage
 {
     GZStickerPackage* emojiPack = [GZStickerPackage new];
     NSArray* rawEmoji = [GZStickerPackage rawEmoji];
@@ -34,6 +34,33 @@
 
     
     return emojiPack;
+}
+
++ (GZStickerPackage*)defaultStickerPackage
+{
+    GZStickerPackage* stickerPack = [GZStickerPackage new];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"Sticker" withExtension:@".bundle"];
+    NSArray *contents = [fileManager contentsOfDirectoryAtURL:bundleURL
+                                   includingPropertiesForKeys:@[]
+                                                      options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                        error:nil];
+    
+    NSMutableArray* stickerItems = [NSMutableArray new];
+    for (NSURL *path in contents) {
+        GZStickerItem* stickerItem = [GZStickerItem new];
+        stickerItem.resource = [path path];
+        stickerItem.name = [NSString stringWithFormat:@"stickerItems #%lu",(unsigned long)[contents indexOfObject:path]];
+        stickerItem.stickerType = GZ_TYPE_STICKER;
+        [stickerItems addObject:stickerItem];
+    }
+    
+    stickerPack.title = @"Sticker";
+    stickerPack.icon = @"\U0001F680";
+    stickerPack.contentArray = stickerItems;
+    stickerPack.type = GZ_TYPE_STICKER;
+    return stickerPack;
 }
 
 + (NSArray*)rawEmoji
@@ -115,9 +142,8 @@
 + (NSArray*)loadLocalPackages
 {
     NSMutableArray* stickerPackages = [NSMutableArray new];
-    for (int i = 0; i < 1 ; i++) {
-        [stickerPackages addObject:[GZStickerPackage defaultStickerPackage]];
-    }
+    [stickerPackages addObject:[GZStickerPackage defaultEmojiPackage]];
+    [stickerPackages addObject:[GZStickerPackage defaultStickerPackage]];
     
     return [stickerPackages copy];
 }
@@ -138,7 +164,7 @@
     if (self.type == GZ_TYPE_EMOJI) {
         return ((int)[GZCommonUtils getMainScreenWidth]) / GZ_EMO_ICON_SIZE;
     } else {
-        return 4;
+        return ((int)[GZCommonUtils getMainScreenWidth]) / GZ_EMO_STICKER_SIZE;
     }
 }
 
@@ -152,7 +178,7 @@
     if (self.type == GZ_TYPE_EMOJI) {
         return ([GZCommonUtils getMainScreenWidth] - [self checkColumnCount] * GZ_EMO_ICON_SIZE)/ ([self checkColumnCount] + 1);
     } else {
-        return 5.0f;
+        return ([GZCommonUtils getMainScreenWidth] - [self checkColumnCount] * GZ_EMO_STICKER_SIZE)/ ([self checkColumnCount] + 1);
     }
 }
 
@@ -162,6 +188,15 @@
         return 5.0f;
     } else {
         return 5.0f;
+    }
+}
+
+- (float)checkItemSize
+{
+    if (self.type == GZ_TYPE_EMOJI) {
+        return GZ_EMO_ICON_SIZE;
+    } else {
+        return GZ_EMO_STICKER_SIZE;
     }
 }
 
