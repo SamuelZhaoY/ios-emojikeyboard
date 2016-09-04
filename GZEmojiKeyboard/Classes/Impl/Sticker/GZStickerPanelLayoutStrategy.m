@@ -41,7 +41,8 @@
 
 - (CGSize)collectionViewContentSize {
     
-    return  CGSizeMake(self.numberOfPage * [GZCommonUtils getMainScreenWidth], GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT - GZ_EMO_PACK_BAR_HEIGHT - 15);
+    return  CGSizeMake(self.numberOfPage * [GZCommonUtils getMainScreenWidth],
+                       GZ_MESSAGE_BOT_STICKER_PANEL_HEIGHT - GZ_EMO_PACK_BAR_HEIGHT - 15);
 }
 
 @end

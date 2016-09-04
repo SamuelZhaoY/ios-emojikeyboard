@@ -28,13 +28,13 @@
     self.bounces = NO;
     self.showsHorizontalScrollIndicator = NO;
     self.showsVerticalScrollIndicator = NO;
-    
+    self.tag = -1;
+
     return self;
 }
 
 - (void)updateStickerList:(NSArray*)stickerList
 {
-    // Check data validity
     if (!stickerList.count) {
         return;
     }
@@ -45,16 +45,13 @@
 
 - (void)refreshContent
 {
-    // Check data validity
     if (!self.stickerList.count) {
         return;
     }
     
+    float offsetX = 0;
     [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    self.tag = -1;
-    
-    float offsetX = 0;
     for (GZStickerPackage* stickerPackage in self.stickerList) {
         UILabel* stickerTab = [UILabel new];
         [self addSubview:stickerTab];
@@ -63,7 +60,8 @@
         stickerTab.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24.0];
         stickerTab.userInteractionEnabled = YES;
         stickerTab.tag = [self.stickerList indexOfObject:stickerPackage];
-        [stickerTab addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onStickerTabTapped:)]];
+        [stickerTab addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(onStickerTabTapped:)]];
         [stickerTab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo([NSNumber numberWithInteger:GZ_EMO_PACK_ITEM_WIDTH]);
             make.height.equalTo([NSNumber numberWithInteger:GZ_EMO_PACK_BAR_HEIGHT]);
@@ -73,7 +71,6 @@
         
         offsetX += GZ_EMO_PACK_ITEM_WIDTH;
         
-         // by default make first sticker package
         if ([self.stickerList firstObject] == stickerPackage) {
             [self selectTag:stickerTab fireDelegate:YES];
         }
@@ -90,13 +87,8 @@
 
 - (void)selectTag:(UIView*)stickerTab fireDelegate:(BOOL)needFire
 {
-    // Check about tag index
-    if (stickerTab.tag >= self.stickerList.count) {
-        return;
-    }
-    
-    // Avoid duplicate operation
-    if (stickerTab == self.currentHighlightView) {
+    if (stickerTab.tag >= self.stickerList.count ||
+        stickerTab == self.currentHighlightView) {
         return;
     }
 
@@ -104,11 +96,9 @@
     [stickerTab setBackgroundColor:[UIColor colorWithRGB:0xBBBBBB]];
     self.currentHighlightView = stickerTab;
     
-    // Scroll rect to visible
     [self scrollRectToVisible:stickerTab.frame animated:YES];
     
     if (needFire) {
-        // Update pressing event
         [self.controlDelegate tapPackagePaneAtIndex:(int)stickerTab.tag];
     }
 }
@@ -128,7 +118,6 @@
 
 - (void)adjustPanelPositionAtIndex:(int)index
 {
-    // Scroll rect to visible
     UIView* tab = [self viewWithTag:index];
     [self scrollRectToVisible:tab.frame animated:YES];
 }
