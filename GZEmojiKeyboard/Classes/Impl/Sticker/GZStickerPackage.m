@@ -115,7 +115,7 @@
 + (NSArray*)loadLocalPackages
 {
     NSMutableArray* stickerPackages = [NSMutableArray new];
-    for (int i = 0; i < 4 ; i++) {
+    for (int i = 0; i < 1 ; i++) {
         [stickerPackages addObject:[GZStickerPackage defaultStickerPackage]];
     }
     
@@ -136,7 +136,7 @@
 - (int)checkColumnCount
 {
     if (self.type == GZ_TYPE_EMOJI) {
-        return 7;
+        return ((int)[GZCommonUtils getMainScreenWidth]) / GZ_EMO_ICON_SIZE;
     } else {
         return 4;
     }

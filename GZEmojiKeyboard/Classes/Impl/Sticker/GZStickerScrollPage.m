@@ -57,7 +57,6 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
 @property(strong, nonatomic)UILabel* emojiLabel;
 @property(assign, nonatomic)GZ_STICKER_TYPE stickerType;
 
-
 - (void)updateStickerInfo:(GZStickerItem*) item;
 - (void)displayOnRectAnchor:(UIView*)anchorView;
 
@@ -77,7 +76,7 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
     
     self.nameLabel = [UILabel new];
     self.emojiLabel = [UILabel new];
-    self.stickerType = -1; // set to a unknow value
+    self.stickerType = -1; 
     
     // Set up basic effect of key pop
     self.nameLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
@@ -149,19 +148,11 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
 @property(strong, nonatomic)UIView* pageContentView;
 @property(assign, nonatomic)BOOL isInLongPress;
 @property(assign, nonatomic)GZEmojiIcon* pressingView;
-@property(strong, nonatomic)GZStickerPackage* currentPackage;
 @property(strong, nonatomic)GZStickerLens* popView;
 
 @end
 
 @implementation GZStickerScrollPage
-
-- (instancetype)init
-{
-    self = [super init];
-    [self checkPageView];
-    return self;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -187,7 +178,8 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
         make.top.equalTo(self.mas_top);
     }];
     
-    UILongPressGestureRecognizer* longPressTrig = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressPop:)];
+    UILongPressGestureRecognizer* longPressTrig = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                                action:@selector(longPressPop:)];
         longPressTrig.minimumPressDuration = 0.2f;
         longPressTrig.cancelsTouchesInView = NO;
         [self addGestureRecognizer:longPressTrig];
@@ -202,33 +194,15 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
     float horizontalSpacing = [stickerPackage checkHorizontalSpacing];
     float verticalSpacing = [stickerPackage checkVerticalSpacing];
     
-    // Need further config the layout for sticker type display -> so far only support emoji
     for (GZStickerItem* emojiItem in stickerIcons) {
         int pageIndex = (int)[stickerIcons indexOfObject:emojiItem];
         int rowPosition = (pageIndex) / coloumnPerpage;
         int coloumnPosition = (pageIndex) % coloumnPerpage;
         
-        // Config delete button
-        if (stickerPackage.type == GZ_TYPE_EMOJI) {
-            UILabel* deleteButton = [UILabel new];
-            deleteButton.font = [UIFont systemFontOfSize:18.0];
-            deleteButton.text = @"X";
-            deleteButton.textAlignment = NSTextAlignmentCenter;
-            deleteButton.userInteractionEnabled = YES;
-            [self.pageContentView addSubview:deleteButton];
-            
-            [deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.width.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
-                make.height.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
-                make.top.equalTo([NSNumber numberWithFloat:(verticalSpacing + (verticalSpacing + GZ_EMO_ICON_SIZE)* 2)]);
-                make.leading.equalTo([NSNumber numberWithFloat:(horizontalSpacing + (coloumnPerpage - 1) * (GZ_EMO_ICON_SIZE + horizontalSpacing))]);
-            }];
-            [deleteButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteInputChar)]];
-        }
-        
         GZEmojiIcon* emojiLabel = [[GZEmojiIcon alloc] initWithStickerInfo:emojiItem];
         emojiLabel.tag = [stickerPackage.contentArray indexOfObject:emojiItem];
-        [emojiLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(simpleLabelTapped:)]];
+        [emojiLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(simpleLabelTapped:)]];
         
         [self.pageContentView addSubview:emojiLabel];
         [emojiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -237,6 +211,24 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
             make.leading.equalTo([NSNumber numberWithFloat:(horizontalSpacing + coloumnPosition * (GZ_EMO_ICON_SIZE + horizontalSpacing))]);
             make.top.equalTo([NSNumber numberWithFloat:(verticalSpacing + (verticalSpacing + GZ_EMO_ICON_SIZE)* rowPosition)]);
         }];
+    }
+    
+    if (stickerPackage.type == GZ_TYPE_EMOJI) {
+        UILabel* deleteButton = [UILabel new];
+        deleteButton.font = [UIFont systemFontOfSize:18.0];
+        deleteButton.text = @"X";
+        deleteButton.textAlignment = NSTextAlignmentCenter;
+        deleteButton.userInteractionEnabled = YES;
+        [self.pageContentView addSubview:deleteButton];
+        
+        [deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
+            make.height.equalTo([NSNumber numberWithFloat:GZ_EMO_ICON_SIZE]);
+            make.top.equalTo([NSNumber numberWithFloat:(verticalSpacing + (verticalSpacing + GZ_EMO_ICON_SIZE)* 2)]);
+            make.leading.equalTo([NSNumber numberWithFloat:(horizontalSpacing + (coloumnPerpage - 1) * (GZ_EMO_ICON_SIZE + horizontalSpacing))]);
+        }];
+        [deleteButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                   action:@selector(deleteInputChar)]];
     }
 }
 
@@ -248,10 +240,9 @@ const float GZ_EMOJI_LENS_WIDTH = 60;
     if ([emojiPack.contentArray count] > (recognizer.view).tag) {
         GZStickerItem* stickerItem = [emojiPack.contentArray objectAtIndex:recognizer.view.tag];
         if (stickerItem.stickerType == GZ_TYPE_EMOJI) {
-            // Hanlde emoji input insertion
             self.accessoryInput.text = [self.accessoryInput.text stringByAppendingString:stickerItem.resource];
         } else if (stickerItem.stickerType == GZ_TYPE_STICKER) {
-            // Hanlde sticker sending
+            
         }
     }
 }

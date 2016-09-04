@@ -52,8 +52,18 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
     self.delegate = self;
     [self registerClass:[GZStickerScrollPage class] forCellWithReuseIdentifier:PAGE_INENTIFIER];
     self.pageObjects = [NSMutableArray new];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
 
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)configAccessoryInput:(UITextField*)input
@@ -178,6 +188,24 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
 {
     self.pageControl.currentPage = index;
     self.pageControl.numberOfPages = totalPageCount;
+}
+
+
+# pragma mark- Rotation Monitoring
+- (void)orientationChanged:(NSNotification *)notification{
+    [self reloadData];
+    
+    float scrollX = 0;
+    int packageIndex = 0;
+    for (int index = 0; index < packageIndex; index++) {
+        GZStickerPackage* package = [self.stickerPackages objectAtIndex:index];
+        scrollX += [package checkPageCount]* [GZCommonUtils getMainScreenWidth];
+    }
+    
+    self.currentPackage = [self.stickerPackages objectAtIndex:packageIndex];
+    [self setContentOffset:CGPointMake(scrollX, 0) animated:NO];
+    self.pageControl.currentPage = 0;
+    [self updatePageControl:0 totalPageCount:[self.currentPackage checkPageCount]];
 }
 
 @end
