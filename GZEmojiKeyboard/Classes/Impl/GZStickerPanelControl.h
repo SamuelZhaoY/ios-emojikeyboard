@@ -17,4 +17,10 @@ FOUNDATION_EXPORT const float GZ_EMO_STICKER_SIZE;
 
 @property(nonatomic, weak) UITextField* associatedInput;
 
+// Show view; add & config constraints
+- (void)showInView:(UIView*)superView;
+
+// Remove from current view hierarchy
+- (void)dismiss;
+
 @end

@@ -86,11 +86,26 @@ const float GZ_EMO_STICKER_SIZE = 70;
         make.bottom.equalTo(self.packageSelector.mas_top).offset(-2);
     }];
     
-    
     // Initialization Done
     return self;
 }
 
+- (void)showInView:(UIView*)superView
+{
+    [superView addSubview:self];
+    
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(superView.mas_leading);
+        make.bottom.equalTo(superView.mas_bottom);
+        make.width.equalTo(superView.mas_width);
+        make.height.equalTo([NSNumber numberWithFloat:220.0f]);
+    }];
+}
+
+- (void)dismiss
+{
+    [self removeFromSuperview];
+}
 
 - (void)setAssociatedInput:(UITextField *)associatedInput
 {

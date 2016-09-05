@@ -26,14 +26,7 @@
 
     GZStickerPanelControl* emoControl = [GZStickerPanelControl new];
     emoControl.associatedInput = self.emojiInput;
-    [self.view addSubview:emoControl];
-    
-    [emoControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.view.mas_leading);
-        make.bottom.equalTo(self.view.mas_bottom);
-        make.width.equalTo(self.view.mas_width);
-        make.height.equalTo([NSNumber numberWithFloat:220.0f]);
-    }];
+    [emoControl showInView:self.view];
     
     self.view.userInteractionEnabled = YES;
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
