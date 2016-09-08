@@ -31,7 +31,7 @@
     emojiPack.title = @"Emoji";
     emojiPack.icon = @"\U0001F603";
     emojiPack.contentArray = [emojiItems copy];
-
+    emojiPack.rawSource = rawEmoji;
     
     return emojiPack;
 }

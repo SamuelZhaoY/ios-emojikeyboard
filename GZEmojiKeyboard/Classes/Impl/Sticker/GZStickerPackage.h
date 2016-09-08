@@ -22,10 +22,7 @@ typedef NS_ENUM(NSUInteger, GZ_STICKER_TYPE)
 @property(nonatomic, assign)GZ_STICKER_TYPE type;
 @property(nonatomic, strong)NSString* title;
 @property(nonatomic, strong)NSString* icon;
-
-+ (NSArray*)rawEmoji;
-
-+ (GZStickerPackage*)defaultEmojiPackage;
+@property(nonatomic, strong)NSArray* rawSource;
 
 + (NSArray*)loadLocalPackages;
 

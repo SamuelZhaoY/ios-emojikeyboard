@@ -190,6 +190,7 @@ const float GZ_STICKER_LENS_HEIGHT = 160;
 @property(assign, nonatomic)BOOL isInLongPress;
 @property(assign, nonatomic)GZEmojiIcon* pressingView;
 @property(strong, nonatomic)GZStickerLens* popView;
+@property(weak, nonatomic)GZStickerPackage* currentPackage;
 
 @end
 
@@ -229,6 +230,7 @@ const float GZ_STICKER_LENS_HEIGHT = 160;
 - (void)updateStickerPackage:(GZStickerPackage*)stickerPackage atIndex:(int)index
 {
     [[self.pageContentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    self.currentPackage = stickerPackage;
     
     NSArray* stickerIcons = [stickerPackage checkItemsAtIndexedPage:index];
     int coloumnPerpage =  [stickerPackage checkColumnCount];
@@ -281,7 +283,7 @@ const float GZ_STICKER_LENS_HEIGHT = 160;
 
 - (void)simpleLabelTapped:(UIGestureRecognizer*)recognizer
 {
-    GZStickerPackage* emojiPack = [GZStickerPackage defaultEmojiPackage];
+    GZStickerPackage* emojiPack = self.currentPackage;
     if ([emojiPack.contentArray count] > (recognizer.view).tag) {
         GZStickerItem* stickerItem = [emojiPack.contentArray objectAtIndex:recognizer.view.tag];
         if (stickerItem.stickerType == GZ_TYPE_EMOJI) {
@@ -304,7 +306,7 @@ const float GZ_STICKER_LENS_HEIGHT = 160;
     } else if (textLength > 1) {
         NSString* emojiContent = [self.accessoryInput.text substringWithRange:NSMakeRange(textLength - 2, 2)];
         
-        if ([[GZStickerPackage rawEmoji] indexOfObject:emojiContent] != NSNotFound) {
+        if ([self.currentPackage.rawSource indexOfObject:emojiContent] != NSNotFound) {
             backDeleteDistance = 2;
         } else {
             backDeleteDistance = 1;
