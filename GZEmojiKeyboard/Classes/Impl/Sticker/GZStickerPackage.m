@@ -139,11 +139,18 @@
 }
 
 
-+ (NSArray*)loadLocalPackages
++ (NSArray*)loadPackages
 {
     NSMutableArray* stickerPackages = [NSMutableArray new];
-    [stickerPackages addObject:[GZStickerPackage defaultEmojiPackage]];
-    [stickerPackages addObject:[GZStickerPackage defaultStickerPackage]];
+
+    // 1. Load from config manager
+    
+    
+    // 2. If no customized emoji, load it (Preparing for providing the customizable logic here)
+    if ([stickerPackages count] == 0) {
+        [stickerPackages addObject:[GZStickerPackage defaultEmojiPackage]];
+        [stickerPackages addObject:[GZStickerPackage defaultStickerPackage]];
+    }
     
     return [stickerPackages copy];
 }

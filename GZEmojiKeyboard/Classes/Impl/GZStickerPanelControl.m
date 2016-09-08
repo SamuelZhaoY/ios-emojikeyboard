@@ -55,7 +55,7 @@ const float GZ_EMO_STICKER_SIZE = 70;
     self.userInteractionEnabled = YES;
     
     // Update Content
-    self.stickerList = [GZStickerPackage loadLocalPackages];
+    self.stickerList = [GZStickerPackage loadPackages];
     [self.packageSelector updateStickerList:self.stickerList];
     [self.contentScrollView updateContentPanel:self.stickerList];
     

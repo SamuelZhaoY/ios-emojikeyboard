@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, GZ_STICKER_TYPE)
 @property(nonatomic, strong)NSString* icon;
 @property(nonatomic, strong)NSArray* rawSource;
 
-+ (NSArray*)loadLocalPackages;
++ (NSArray*)loadPackages;
 
 - (int)checkRowCount;
 

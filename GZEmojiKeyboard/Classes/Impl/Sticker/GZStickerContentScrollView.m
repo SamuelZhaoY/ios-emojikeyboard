@@ -175,7 +175,6 @@ NSString* const PAGE_INENTIFIER = @"GZ_STICKER_IDENTIFIER";
         GZStickerPackage* package = [self.stickerPackages objectAtIndex:index];
         scrollX += [package checkPageCount]* [GZCommonUtils getMainScreenWidth];
     }
-    
     self.currentPackage = [self.stickerPackages objectAtIndex:packageIndex];
     [self setContentOffset:CGPointMake(scrollX, 0) animated:NO];
     self.pageControl.currentPage = 0;
