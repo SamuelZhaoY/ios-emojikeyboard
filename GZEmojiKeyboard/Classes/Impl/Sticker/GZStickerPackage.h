@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, GZ_STICKER_TYPE)
 @property(nonatomic, strong)NSArray* contentArray;
 @property(nonatomic, assign)GZ_STICKER_TYPE type;
 @property(nonatomic, strong)NSString* title;
-@property(nonatomic, strong)NSString* icon;
+@property(nonatomic, strong)UIImage* icon;
 @property(nonatomic, strong)NSArray* rawSource;
 
 + (NSArray*)loadPackages;

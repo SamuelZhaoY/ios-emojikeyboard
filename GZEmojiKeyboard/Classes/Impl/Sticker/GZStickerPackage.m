@@ -29,7 +29,9 @@
     }
     
     emojiPack.title = @"Emoji";
-    emojiPack.icon = @"\U0001F603";
+    emojiPack.icon = [GZCommonUtils imageFromString:@"\U0001F603"
+                                          tintColor:[UIColor blackColor]
+                                               size:CGSizeMake(20, 20)];
     emojiPack.contentArray = [emojiItems copy];
     emojiPack.rawSource = rawEmoji;
     
@@ -57,7 +59,9 @@
     }
     
     stickerPack.title = @"Sticker";
-    stickerPack.icon = @"\U0001F680";
+    stickerPack.icon = [GZCommonUtils imageFromString:@"\U0001F680"
+                                          tintColor:[UIColor blackColor]
+                                               size:CGSizeMake(20, 20)];
     stickerPack.contentArray = stickerItems;
     stickerPack.type = GZ_TYPE_STICKER;
     return stickerPack;

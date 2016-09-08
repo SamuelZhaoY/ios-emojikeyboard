@@ -55,9 +55,20 @@
     for (GZStickerPackage* stickerPackage in self.stickerList) {
         UILabel* stickerTab = [UILabel new];
         [self addSubview:stickerTab];
-        stickerTab.text = stickerPackage.icon;
+        
+        UIImageView* tabImageIcon = [UIImageView new];
+        [stickerTab addSubview:tabImageIcon];
+        
+        [tabImageIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(stickerTab.mas_width);
+            make.leading.equalTo(stickerTab.mas_leading);
+            make.top.equalTo(stickerTab.mas_top).offset(-4);
+            make.bottom.equalTo(stickerTab.mas_bottom).offset(-4);
+        }];
+        
+        tabImageIcon.image = stickerPackage.icon;
+        
         stickerTab.textAlignment = NSTextAlignmentCenter;
-        stickerTab.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:24.0];
         stickerTab.userInteractionEnabled = YES;
         stickerTab.tag = [self.stickerList indexOfObject:stickerPackage];
         [stickerTab addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self

@@ -14,4 +14,9 @@
 
 + (CGFloat)getNavigationHeight;
 
++ (UIImage*)imageFromString:(NSString*)string
+                  tintColor:(UIColor*)color
+                       size:(CGSize)size;
+
+
 @end

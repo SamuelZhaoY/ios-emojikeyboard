@@ -20,4 +20,16 @@
     return 44 + [UIApplication sharedApplication].statusBarFrame.size.height;
 }
 
++ (UIImage*)imageFromString:(NSString*)string
+                  tintColor:(UIColor*)color
+                       size:(CGSize)size
+{
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [string drawInRect:CGRectMake(0, 0, size.width, size.height)
+        withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:MIN(size.width, size.height)],NSForegroundColorAttributeName:color}];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 @end
