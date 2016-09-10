@@ -8,7 +8,7 @@
 
 #import "GZStickerScrollPage.h"
 #import "GZStickerPackage.h"
-#import "GZStickerPanelControl.h"
+#import "GZEmojiKeyboardControl.h"
 #import "GZCommonUtils.h"
 #import "UIImage+animatedGIF.h"
 

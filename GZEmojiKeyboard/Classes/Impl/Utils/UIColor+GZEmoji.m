@@ -8,7 +8,6 @@
 
 #import "UIColor+GZEmoji.h"
 
-
 @implementation UIColor (GZEmoji)
 
 #pragma util method
@@ -25,6 +24,5 @@
                             blue:((rgb & 0xFF)) / 255.0f
                            alpha:alpha];
 }
-
 
 @end

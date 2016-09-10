@@ -7,7 +7,7 @@
 //
 
 #import "GZStickerPackagePanel.h"
-#import "GZStickerPanelControl.h"
+#import "GZEmojiKeyboardControl.h"
 #import "GZStickerPackage.h"
 #import "GZStickerContentScrollView.h"
 

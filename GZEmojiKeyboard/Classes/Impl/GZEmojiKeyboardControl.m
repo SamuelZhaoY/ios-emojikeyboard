@@ -6,7 +6,7 @@
 //  Copyright © 2015 com.gz. All rights reserved.
 //
 
-#import "GZStickerPanelControl.h"
+#import "GZEmojiKeyboardControl.h"
 #import <QuartzCore/QuartzCore.h>
 #import "GZStickerPackage.h"
 #import "GZStickerContentScrollView.h"
@@ -21,7 +21,7 @@ const float GZ_EMO_ICON_SIZE = 35;
 const float GZ_EMO_STICKER_SIZE = 70;
 
 
-@interface GZStickerPanelControl()<UIScrollViewDelegate>
+@interface GZEmojiKeyboardControl()<UIScrollViewDelegate>
 
 @property(strong, nonatomic)GZStickerPackagePanel* packageSelector;
 @property(strong, nonatomic)GZStickerContentScrollView* contentScrollView;
@@ -29,7 +29,7 @@ const float GZ_EMO_STICKER_SIZE = 70;
 
 @end
 
-@implementation GZStickerPanelControl
+@implementation GZEmojiKeyboardControl
 
 - (instancetype)init
 {

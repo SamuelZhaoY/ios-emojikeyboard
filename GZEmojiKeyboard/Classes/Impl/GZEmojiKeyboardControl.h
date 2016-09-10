@@ -13,7 +13,7 @@ FOUNDATION_EXPORT const float GZ_EMO_PACK_ITEM_WIDTH;
 FOUNDATION_EXPORT const float GZ_EMO_ICON_SIZE;
 FOUNDATION_EXPORT const float GZ_EMO_STICKER_SIZE;
 
-@interface GZStickerPanelControl : UIView
+@interface GZEmojiKeyboardControl : UIView
 
 @property(nonatomic, weak) UITextField* associatedInput;
 

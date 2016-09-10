@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import <Masonry/Masonry.h>
-#import <GZEmojiKeyboard/GZStickerPanelControl.h>
+#import <GZEmojiKeyboard/GZEmojiKeyboardControl.h>
 
 /**
  *  TODO: 1. support screen roration, ipad 2. support gif
@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    GZStickerPanelControl* emoControl = [GZStickerPanelControl new];
+    GZEmojiKeyboardControl* emoControl = [GZEmojiKeyboardControl new];
     emoControl.associatedInput = self.emojiInput;
     [emoControl showInView:self.view];
     
