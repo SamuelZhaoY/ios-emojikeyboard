@@ -59,15 +59,12 @@
         UIImageView* tabImageIcon = [UIImageView new];
         [stickerTab addSubview:tabImageIcon];
         
-        [tabImageIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(stickerTab.mas_width);
-            make.leading.equalTo(stickerTab.mas_leading);
-            make.top.equalTo(stickerTab.mas_top).offset(-4);
-            make.bottom.equalTo(stickerTab.mas_bottom).offset(-4);
-        }];
-        
+        tabImageIcon.tag = 1000;
         tabImageIcon.image = stickerPackage.icon;
+        tabImageIcon.contentMode = UIViewContentModeCenter;
         
+        [self updateIconViewInTab:stickerTab];
+
         stickerTab.textAlignment = NSTextAlignmentCenter;
         stickerTab.userInteractionEnabled = YES;
         stickerTab.tag = [self.stickerList indexOfObject:stickerPackage];
@@ -82,9 +79,11 @@
         
         offsetX += GZ_EMO_PACK_ITEM_WIDTH;
         
-        if ([self.stickerList firstObject] == stickerPackage) {
-            [self selectTag:stickerTab fireDelegate:YES];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([self.stickerList firstObject] == stickerPackage) {
+                [self selectTag:stickerTab fireDelegate:YES];
+            }
+        });
     }
 }
 
@@ -102,21 +101,36 @@
         stickerTab == self.currentHighlightView) {
         return;
     }
-
-    [self.currentHighlightView setBackgroundColor:[UIColor clearColor]];
-    [stickerTab setBackgroundColor:[UIColor colorWithRGB:0xBBBBBB]];
-    self.currentHighlightView = stickerTab;
     
     [self scrollRectToVisible:stickerTab.frame animated:YES];
     
     if (needFire) {
         [self.controlDelegate tapPackagePaneAtIndex:(int)stickerTab.tag];
     }
+    
+    [self.currentHighlightView setBackgroundColor:[UIColor clearColor]];
+    self.currentHighlightView = stickerTab;
+    [stickerTab setBackgroundColor:[UIColor colorWithRGB:0xBBBBBB]];
+    [self updateIconViewInTab:stickerTab];
 }
 
 - (void)onStickerTabTapped:(UIGestureRecognizer*)recognizer
 {
     [self selectTag:recognizer.view fireDelegate:YES];
+}
+
+
+- (void)updateIconViewInTab:(UIView*)stickerTab
+{
+    UIImageView* iconView = [stickerTab viewWithTag:1000];
+    [iconView removeFromSuperview];
+    [stickerTab addSubview:iconView];
+    [iconView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(stickerTab.mas_width);
+        make.leading.equalTo(stickerTab.mas_leading);
+        make.top.equalTo(stickerTab.mas_top).offset(-4);
+        make.bottom.equalTo(stickerTab.mas_bottom).offset(-4);
+    }];
 }
 
 #pragma mark Scroll Content Delegate

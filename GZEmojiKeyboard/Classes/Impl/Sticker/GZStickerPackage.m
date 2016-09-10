@@ -31,7 +31,7 @@
     emojiPack.title = @"Emoji";
     emojiPack.icon = [GZCommonUtils imageFromString:@"\U0001F603"
                                           tintColor:[UIColor blackColor]
-                                               size:CGSizeMake(20, 20)];
+                                               size:CGSizeMake(25, 25)];
     emojiPack.contentArray = [emojiItems copy];
     emojiPack.rawSource = rawEmoji;
     
@@ -61,7 +61,7 @@
     stickerPack.title = @"Sticker";
     stickerPack.icon = [GZCommonUtils imageFromString:@"\U0001F680"
                                           tintColor:[UIColor blackColor]
-                                               size:CGSizeMake(20, 20)];
+                                               size:CGSizeMake(25, 25)];
     stickerPack.contentArray = stickerItems;
     stickerPack.type = GZ_TYPE_STICKER;
     return stickerPack;
