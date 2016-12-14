@@ -43,7 +43,7 @@ iOS-EmojiKeyBoard is available through [CocoaPods](http://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "iOS-EmojiKeyBoard"
+pod "GZEmojiKeyboard"
 ```
 
 ## Author
